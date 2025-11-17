@@ -1,0 +1,90 @@
+<table class="comparison-table">
+  <thead>
+    <tr>
+      <th>Recursos</th>
+      @for (plano of planos; track plano.id) {
+        <th [class.highlighted]="plano.nome === 'Intermediário'">
+          {{ plano.nome }}
+        </th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Público ideal -->
+    <tr>
+      <td><strong>Público ideal</strong></td>
+      @for (plano of planos; track plano.id) {
+        <td class="resource-value">
+          {{ getRecursoCustomValue(plano, 'publicoIdeal') }}
+        </td>
+      }
+    </tr>
+
+    <!-- Regimes atendidos -->
+    <tr>
+      <td><strong>Regimes atendidos</strong></td>
+      @for (plano of planos; track plano.id) {
+        <td class="resource-value">
+          {{ getRecursoCustomValue(plano, 'regimesAtendidos') }}
+        </td>
+      }
+    </tr>
+
+    <!-- Faturamento médio mensal -->
+    <tr>
+      <td><strong>Faturamento médio mensal</strong></td>
+      @for (plano of planos; track plano.id) {
+        <td class="resource-value">
+          {{ getRecursoCustomValue(plano, 'faturamentoMedioMensal') }}
+        </td>
+      }
+    </tr>
+
+    <!-- Atividade da empresa -->
+    <tr>
+      <td><strong>Atividade da empresa</strong></td>
+      @for (plano of planos; track plano.id) {
+        <td class="resource-value">
+          {{ getRecursoCustomValue(plano, 'atividadeEmpresa') }}
+        </td>
+      }
+    </tr>
+
+    <!-- Canais de atendimento -->
+    <tr>
+      <td><strong>Canais de atendimento</strong></td>
+      @for (plano of planos; track plano.id) {
+        <td class="resource-value">
+          {{ getRecursoCustomValue(plano, 'canaisAtendimento') }}
+        </td>
+      }
+    </tr>
+
+    <!-- Relatórios gerenciais -->
+    <tr>
+      <td><strong>Relatórios gerenciais</strong></td>
+      @for (plano of planos; track plano.id) {
+        <td class="resource-value">
+          {{ getRecursoCustomValue(plano, 'relatoriosGerenciais') }}
+        </td>
+      }
+    </tr>
+
+    <!-- Recursos com checkmarks -->
+    @for (recurso of getRecursosUnicos(); track recurso) {
+      <tr>
+        <td>{{ recurso }}</td>
+        @for (plano of planos; track plano.id) {
+          <td>
+            @if (getRecursoValue(plano, recurso)) {
+              <span class="check-icon">✓</span>
+            } @else {
+              <span class="cross-icon">✗</span>
+            }
+          </td>
+        }
+      </tr>
+    }
+  </tbody>
+</table>
+

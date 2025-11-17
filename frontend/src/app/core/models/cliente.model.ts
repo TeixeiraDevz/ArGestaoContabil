@@ -5,6 +5,8 @@ export interface Cliente {
   telefone: string;
   tipoPessoa: 'PF' | 'PJ';
   documento: string; // CPF ou CNPJ
+  cnpj?: string; // CNPJ formatado (para empresas)
+  logo?: string; // URL da logo da empresa
   endereco?: Endereco;
   ativo: boolean;
   createdAt: string;

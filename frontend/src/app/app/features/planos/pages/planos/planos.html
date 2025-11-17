@@ -10,94 +10,29 @@
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" routerLink="/clientes">Quero ser cliente</a>
-          <a class="btn btn-outline" routerLink="/equipe">Conhecer a equipe</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="planos-cards">
+<section class="comparison-section">
   <div class="container">
-    <div class="row g-4">
-      @for (plano of planos; track plano.nome) {
-        <div class="col-lg-4">
-          <article class="plano-card" [class.destacado]="plano.destacado">
-            @if (plano.destacado) {
-              <div class="badge-top">Mais Popular</div>
-            }
-            <header class="plano-header">
-              <h2>{{ plano.nome }}</h2>
-              <p class="plano-subtitle">{{ plano.subtitulo }}</p>
-            </header>
-            <p class="plano-description">{{ plano.descricao }}</p>
-            <ul class="plano-benefits">
-              @for (beneficio of plano.beneficios; track beneficio) {
-                <li>
-                  <span class="check-icon">✓</span>
-                  <span>{{ beneficio }}</span>
-                </li>
-              }
-            </ul>
-            <footer class="plano-footer">
-              <button class="btn btn-primary w-100">Contratar plano</button>
-              <a class="btn-link" routerLink="/clientes">Falar com consultor</a>
-            </footer>
-          </article>
-        </div>
-      }
+    <h2 class="section-title">Compare nossos planos</h2>
+    <p class="section-subtitle">
+      Escolha o plano ideal para o tamanho e necessidade da sua empresa. Todos os planos incluem suporte especializado e tecnologia de ponta.
+    </p>
+
+    <app-loading *ngIf="loading" message="Carregando planos..."></app-loading>
+
+    <div *ngIf="error" class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+
+    <app-plano-table *ngIf="!loading && !error && planos.length > 0" [planos]="planos"></app-plano-table>
+
+    <div *ngIf="!loading && !error && planos.length === 0" class="text-center text-muted py-5">
+      <p>Nenhum plano encontrado.</p>
     </div>
   </div>
 </section>
-
-<section class="planos-diferenciais">
-  <div class="container">
-    <div class="row justify-content-center text-center mb-5">
-      <div class="col-lg-8">
-        <h2 class="section-title">O que acompanha todos os nossos planos</h2>
-        <p class="section-subtitle">
-          Independente do plano, você conta com tecnologia, especialistas e uma operação contábil integrada ao seu dia a dia.
-        </p>
-      </div>
-    </div>
-
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#667eea" viewBox="0 0 16 16">
-              <path d="M8.5 1.866a1.5 1.5 0 1 0-1 0V4h1V1.866z"/>
-              <path d="M14 4h-5v.5a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5V4H2a2 2 0 0 0-2 2v1a5 5 0 0 0 4 4.9V13a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-1.1a5 5 0 0 0 4-4.9V6a2 2 0 0 0-2-2zM2 6h5v1.5a.5.5 0 0 0 1 0V6h5a1 1 0 0 1 1 1v1a4 4 0 0 1-3 3.874V13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-1.126A4 4 0 0 1 2 8V7a1 1 0 0 1 1-1z"/>
-            </svg>
-          </div>
-          <h3>Atendimento consultivo</h3>
-          <p>Especialistas dedicados que acompanham sua operação e recomendam os melhores caminhos fiscais e financeiros.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#667eea" viewBox="0 0 16 16">
-              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm3 0a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1H5z"/>
-              <path d="M3 5h10v2H3zm0 3h10v2H3zm0 3h10v2H3z"/>
-            </svg>
-          </div>
-          <h3>Documentos e relatórios digitais</h3>
-          <p>Portal completo para compartilhar comprovantes, emitir guias e acompanhar relatórios gerenciais em tempo real.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="#667eea" viewBox="0 0 16 16">
-              <path d="M9.5 2A1.5 1.5 0 0 0 8 3.5V4H6.5A3.5 3.5 0 0 0 3 7.5V12H2.5a.5.5 0 0 0-.5.5v1A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5v-1a.5.5 0 0 0-.5-.5H13V7.5A3.5 3.5 0 0 0 9.5 4H9V3.5A1.5 1.5 0 0 0 9.5 2zM4 7.5A2.5 2.5 0 0 1 6.5 5H9.5A2.5 2.5 0 0 1 12 7.5V12H4V7.5zm3 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1A.5.5 0 0 1 7 10.5z"/>
-            </svg>
-          </div>
-          <h3>Segurança e conformidade</h3>
-          <p>Monitoramento constante das obrigações fiscais, folha, e-social e legislação vigente para manter sua empresa regular.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-

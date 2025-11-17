@@ -1,1 +1,32 @@
-<p>clientes works!</p>
+<div class="clientes-hero">
+  <div class="container">
+    <h1 class="hero-title">Nossos Clientes</h1>
+    <p class="hero-subtitle">
+      Conheça algumas das empresas que confiam na AR Contabilidade para suas necessidades contábeis e fiscais.
+    </p>
+  </div>
+</div>
+
+<div class="carousel-section">
+  <div class="container">
+    <h2 class="section-title">Empresas Parceiras</h2>
+    
+    <app-loading *ngIf="loading" message="Carregando clientes..."></app-loading>
+    
+    <div *ngIf="error" class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+    
+    <app-carousel 
+      *ngIf="!loading && !error && carouselItems.length > 0"
+      [items]="carouselItems"
+      [autoPlay]="true"
+      [autoPlayInterval]="1500"
+      [showControls]="false">
+    </app-carousel>
+    
+    <div *ngIf="!loading && !error && carouselItems.length === 0" class="text-center text-muted py-5">
+      <p>Nenhum cliente encontrado.</p>
+    </div>
+  </div>
+</div>
