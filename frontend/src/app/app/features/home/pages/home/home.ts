@@ -249,16 +249,8 @@ import { Plano } from '../../../../../core/models/plano.model';
     
     @media (min-width: 992px) {
       .hero-buttons {
-        gap: 0;
         justify-content: flex-start;
-      }
-      
-      .hero-btn-planos {
-        margin-right: 3rem !important;
-      }
-      
-      .hero-btn-equipe {
-        margin-left: 0 !important;
+        gap: 1.5rem;
       }
     }
     
