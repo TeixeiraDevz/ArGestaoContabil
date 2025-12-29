@@ -21,14 +21,14 @@ import { Plano } from '../../../../../core/models/plano.model';
       display: flex;
       align-items: center;
       overflow: hidden;
-      padding-top: 120px;
+      padding-top: 250px;
       padding-bottom: 80px;
     }
     
     @media (max-width: 768px) {
       .hero-section {
         min-height: 60vh;
-        padding-top: 100px;
+        padding-top: 115px;
         padding-bottom: 60px;
       }
     }
@@ -101,6 +101,24 @@ import { Plano } from '../../../../../core/models/plano.model';
       margin-bottom: 1.25rem;
       letter-spacing: -0.02em;
     }
+
+    .hero-title-brand {
+      display: inline-block;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #0d1b2a 0%, #1e40af 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-title-main {
+      font-weight: 800;
+    }
+
+    .hero-title-sub {
+      font-weight: 700;
+    }
     
     .hero-subtitle {
       font-size: 1rem;
@@ -118,10 +136,307 @@ import { Plano } from '../../../../../core/models/plano.model';
       padding: 1.5rem;
     }
     
-    .hero-illustration svg {
-      max-width: 100%;
-      height: auto;
-      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.08));
+    /* Visual do Hero (CSS-only, sem SVG/IMG) */
+    .hero-visual {
+      position: relative;
+      width: min(520px, 100%);
+      aspect-ratio: 11 / 9;
+      border-radius: 28px;
+      isolation: isolate;
+    }
+
+    .hero-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        radial-gradient(120% 90% at 20% 15%, rgba(102, 126, 234, 0.22) 0%, rgba(102, 126, 234, 0) 55%),
+        radial-gradient(110% 85% at 85% 30%, rgba(37, 99, 235, 0.18) 0%, rgba(37, 99, 235, 0) 60%),
+        radial-gradient(120% 90% at 55% 85%, rgba(118, 75, 162, 0.14) 0%, rgba(118, 75, 162, 0) 60%);
+      filter: blur(8px);
+      opacity: 0.9;
+      z-index: 0;
+    }
+
+    .hv-card {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.72);
+      border: 1px solid rgba(30, 64, 175, 0.14);
+      box-shadow: 0 18px 45px rgba(11, 18, 32, 0.12);
+      backdrop-filter: blur(10px);
+      border-radius: 18px;
+      z-index: 2;
+    }
+
+    .hv-card--main {
+      left: 14%;
+      top: 22%;
+      width: 74%;
+      height: 62%;
+      padding: 14px 14px 12px;
+    }
+
+    .hv-card--side {
+      right: 6%;
+      bottom: 10%;
+      width: 38%;
+      height: 44%;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.62);
+      box-shadow: 0 14px 35px rgba(11, 18, 32, 0.10);
+      z-index: 1;
+      transform: rotate(1.5deg);
+    }
+
+    .hv-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 8px;
+      border-radius: 12px;
+      background: rgba(13, 27, 42, 0.06);
+      border: 1px solid rgba(13, 27, 42, 0.05);
+    }
+
+    .hv-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .hv-dot--1 { background: rgba(30, 64, 175, 0.35); }
+    .hv-dot--2 { background: rgba(30, 64, 175, 0.18); }
+    .hv-dot--3 { background: rgba(30, 64, 175, 0.12); }
+
+    .hv-card-title {
+      margin-left: auto;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: rgba(13, 27, 42, 0.70);
+      letter-spacing: 0.02em;
+    }
+
+    .hv-kpis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 12px 4px 10px;
+    }
+
+    .hv-kpi {
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.55);
+      border: 1px solid rgba(30, 64, 175, 0.10);
+    }
+
+    .hv-kpi-label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: rgba(13, 27, 42, 0.55);
+    }
+
+    .hv-kpi-value {
+      display: block;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: rgba(13, 27, 42, 0.88);
+      margin-top: 2px;
+      letter-spacing: -0.01em;
+    }
+
+    .hv-kpi-value--up {
+      color: #1e40af;
+    }
+
+    .hv-chart {
+      position: relative;
+      margin-top: 6px;
+      height: calc(100% - 118px);
+      border-radius: 14px;
+      background: rgba(13, 27, 42, 0.03);
+      border: 1px solid rgba(13, 27, 42, 0.05);
+      overflow: hidden;
+    }
+
+    .hv-bars {
+      position: absolute;
+      left: 14px;
+      right: 14px;
+      bottom: 14px;
+      top: 14px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      align-items: end;
+      z-index: 1;
+    }
+
+    .hv-bar {
+      border-radius: 10px;
+      background: rgba(30, 64, 175, 0.18);
+      height: 35%;
+      transform-origin: bottom;
+      animation: hvGrow 1.1s ease-out both;
+    }
+    .hv-bar--1 { height: 32%; }
+    .hv-bar--2 { height: 44%; background: rgba(30, 64, 175, 0.20); }
+    .hv-bar--3 { height: 58%; background: rgba(30, 64, 175, 0.22); }
+    .hv-bar--4 { height: 72%; background: rgba(30, 64, 175, 0.24); }
+    .hv-bar--5 { height: 86%; background: linear-gradient(135deg, rgba(13, 27, 42, 0.92), rgba(30, 64, 175, 0.92)); }
+
+    @keyframes hvGrow {
+      from { transform: scaleY(0.65); opacity: 0.6; }
+      to { transform: scaleY(1); opacity: 1; }
+    }
+
+    .hv-axis {
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      height: 3px;
+      border-radius: 99px;
+      background: rgba(13, 27, 42, 0.12);
+      z-index: 1;
+    }
+
+    .hv-line {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background:
+        radial-gradient(10px 10px at 25% 62%, rgba(30, 64, 175, 0.70) 0 45%, transparent 46% 100%),
+        radial-gradient(10px 10px at 42% 55%, rgba(30, 64, 175, 0.72) 0 45%, transparent 46% 100%),
+        radial-gradient(10px 10px at 60% 45%, rgba(30, 64, 175, 0.74) 0 45%, transparent 46% 100%),
+        radial-gradient(12px 12px at 78% 32%, rgba(30, 64, 175, 0.95) 0 45%, transparent 46% 100%),
+        linear-gradient(145deg, transparent 0 35%, rgba(30, 64, 175, 0.00) 35%, rgba(30, 64, 175, 0.00) 40%, transparent 40% 100%);
+      mask-image: radial-gradient(140px 80px at 65% 45%, rgba(0,0,0,1) 0 60%, rgba(0,0,0,0) 75%);
+      opacity: 0.95;
+      pointer-events: none;
+    }
+
+    .hv-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(102, 126, 234, 0.14);
+      border: 1px solid rgba(102, 126, 234, 0.22);
+      color: rgba(13, 27, 42, 0.76);
+      font-weight: 800;
+      font-size: 0.8rem;
+      margin-bottom: 12px;
+    }
+
+    .hv-side-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 10px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.52);
+      border: 1px solid rgba(13, 27, 42, 0.05);
+      margin-top: 10px;
+    }
+
+    .hv-side-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(30, 64, 175, 0.55);
+      box-shadow: 0 6px 18px rgba(30, 64, 175, 0.18);
+      flex-shrink: 0;
+    }
+
+    .hv-side-text {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: rgba(13, 27, 42, 0.72);
+      line-height: 1.2;
+    }
+
+    .hv-bubble {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 18px 45px rgba(11, 18, 32, 0.14);
+      z-index: 3;
+      transform: translateZ(0);
+      animation: hvFloat 7s ease-in-out infinite;
+    }
+
+    .hv-bubble--1 {
+      right: 10%;
+      top: 6%;
+      width: 86px;
+      height: 86px;
+      background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.26) 0 28%, transparent 29% 100%),
+        linear-gradient(135deg, rgba(247, 231, 165, 0.95), rgba(212, 175, 55, 0.95));
+      color: rgba(255, 255, 255, 0.98);
+      text-shadow: 0 2px 10px rgba(11, 18, 32, 0.12);
+      animation-duration: 8.5s;
+    }
+
+    .hv-bubble--2 {
+      left: 8%;
+      top: 22%;
+      width: 46px;
+      height: 46px;
+      background: rgba(102, 126, 234, 0.85);
+      font-size: 1.05rem;
+      animation-duration: 7.2s;
+    }
+
+    .hv-bubble--3 {
+      left: 22%;
+      top: 10%;
+      width: 40px;
+      height: 40px;
+      background: rgba(13, 27, 42, 0.55);
+      font-size: 0.95rem;
+      animation-duration: 6.8s;
+    }
+
+    @keyframes hvFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hv-bar,
+      .hv-bubble {
+        animation: none !important;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .hero-illustration {
+        padding: 1rem 0.5rem;
+      }
+      .hero-visual {
+        width: min(420px, 100%);
+      }
+      .hv-card--main {
+        left: 10%;
+        width: 80%;
+      }
+      .hv-card--side {
+        display: none;
+      }
+      .hv-bubble--1 {
+        right: 6%;
+        top: 0%;
+        transform: scale(0.92);
+      }
     }
     
     @media (max-width: 991px) {
@@ -236,28 +551,28 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .hero-buttons .btn-primary {
-      background: linear-gradient(90deg, #667eea, #764ba2);
-      color: #120f23;
+      background: linear-gradient(90deg, #0d1b2a, #1e40af);
+      color: #ffffff;
       border: none;
-      box-shadow: 0 18px 35px rgba(118, 75, 162, 0.25);
+      box-shadow: 0 18px 35px rgba(30, 64, 175, 0.28);
     }
     
     .hero-buttons .btn-primary:hover {
-      background: linear-gradient(90deg, #667eea, #764ba2);
-      color: #120f23;
+      background: linear-gradient(90deg, #0d1b2a, #1e40af);
+      color: #ffffff;
       transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 25px 45px rgba(118, 75, 162, 0.35);
+      box-shadow: 0 25px 45px rgba(30, 64, 175, 0.38);
     }
     
     .hero-buttons .btn-outline-primary {
-      border: 2px solid #667eea;
-      color: #667eea;
+      border: 2px solid #1e40af;
+      color: #1e40af;
       background: transparent;
     }
     
     .hero-buttons .btn-outline-primary:hover {
-      background: #667eea;
-      border-color: #667eea;
+      background: #1e40af;
+      border-color: #1e40af;
       color: white;
       transform: translateY(-3px) scale(1.02);
     }
@@ -307,7 +622,8 @@ import { Plano } from '../../../../../core/models/plano.model';
         padding: 0.5rem;
       }
       
-      .hero-illustration svg {
+      .hero-illustration svg,
+      .hero-illustration img {
         max-width: 100%;
         height: auto;
       }
@@ -678,17 +994,17 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .plano-card .btn-primary {
-      background: linear-gradient(90deg, #667eea, #764ba2);
-      color: #120f23;
+      background: linear-gradient(90deg, #0d1b2a, #1e40af);
+      color: #ffffff;
       border: none;
-      box-shadow: 0 8px 20px rgba(118, 75, 162, 0.2);
+      box-shadow: 0 8px 20px rgba(30, 64, 175, 0.22);
       font-weight: 600;
     }
     
     .plano-card .btn-primary:hover {
-      background: linear-gradient(90deg, #667eea, #764ba2);
+      background: linear-gradient(90deg, #0d1b2a, #1e40af);
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(118, 75, 162, 0.3);
+      box-shadow: 0 12px 30px rgba(30, 64, 175, 0.32);
     }
     
     .plano-card .card-header {

@@ -94,14 +94,16 @@ import { filter } from 'rxjs/operators';
       justify-content: center;
     }
     
-    .logo-container svg {
-      width: 24px;
-      height: 24px;
+    .logo-container .brand-logo {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      display: block;
       transition: transform var(--transition-normal);
     }
     
-    .navbar-brand:hover .logo-container svg {
-      transform: rotate(5deg);
+    .navbar-brand:hover .logo-container .brand-logo {
+      transform: scale(1.03);
     }
     
     .nav-link {
@@ -161,8 +163,8 @@ import { filter } from 'rxjs/operators';
       padding: 0.5rem;
       margin-top: 0.75rem;
       min-width: 220px;
-      left: 71px;
-      top: 7px;
+      left: 84px;
+      top: 16px;
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
       animation: dropdownFadeIn 0.2s ease-out;
@@ -284,6 +286,13 @@ import { filter } from 'rxjs/operators';
 
     .floating-navbar-toggler:hover {
       background: rgba(255, 255, 255, 1);
+    }
+
+    /* Garantia: o floating toggler NUNCA deve aparecer no desktop */
+    @media (min-width: 992px) {
+      .floating-navbar-toggler {
+        display: none !important;
+      }
     }
     
     /* Floating toggler controlado via showFloatingToggler no componente */

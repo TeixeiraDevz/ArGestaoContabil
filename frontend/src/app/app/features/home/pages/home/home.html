@@ -13,8 +13,9 @@
         <!-- Conteúdo do hero -->
         <div class="hero-content animate-fade-in-up">
           <h1 class="hero-title mb-4">
-            Soluções contábeis completas<br>
-            para sua empresa crescer
+            <span class="hero-title-brand">AR Gestão Contábil e Financeira</span><br>
+            <span class="hero-title-main">Soluções completas</span><br>
+            <span class="hero-title-sub">para sua empresa crescer</span>
           </h1>
           <p class="hero-subtitle mb-5">
             Gestão contábil completa com tecnologia e atendimento especializado.
@@ -26,88 +27,61 @@
         </div>
       </div>
       <div class="col-12 col-lg-6">
-        <!-- Ilustração de empresa em crescimento e dinheiro -->
+        <!-- Visual do hero (CSS-only) -->
         <div class="hero-illustration animate-fade-in-up" style="animation-delay: 0.3s">
-          <svg width="100%" height="450" viewBox="0 0 550 450" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="buildingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#667eea" stop-opacity="0.15"/>
-                <stop offset="100%" stop-color="#764ba2" stop-opacity="0.2"/>
-              </linearGradient>
-              <linearGradient id="moneyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#667eea"/>
-                <stop offset="100%" stop-color="#764ba2"/>
-              </linearGradient>
-              <linearGradient id="chartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#667eea" stop-opacity="0.3"/>
-                <stop offset="100%" stop-color="#667eea" stop-opacity="0.4"/>
-              </linearGradient>
-            </defs>
-            
-            <!-- Prédio/empresa principal -->
-            <g transform="translate(50, 200)">
-              <rect x="0" y="0" width="140" height="200" rx="10" fill="url(#buildingGradient)" stroke="#667eea" stroke-width="2.5"/>
-              <rect x="20" y="20" width="35" height="35" rx="5" fill="#667eea" opacity="0.5"/>
-              <rect x="85" y="20" width="35" height="35" rx="5" fill="#667eea" opacity="0.5"/>
-              <rect x="20" y="75" width="35" height="35" rx="5" fill="#667eea" opacity="0.5"/>
-              <rect x="85" y="75" width="35" height="35" rx="5" fill="#667eea" opacity="0.5"/>
-              <rect x="20" y="130" width="35" height="35" rx="5" fill="#667eea" opacity="0.5"/>
-              <rect x="85" y="130" width="35" height="35" rx="5" fill="#667eea" opacity="0.5"/>
-              <!-- Porta -->
-              <rect x="50" y="170" width="40" height="30" rx="5" fill="#667eea" opacity="0.7"/>
-            </g>
-            
-            <!-- Gráfico de crescimento ascendente -->
-            <g transform="translate(220, 150)">
-              <rect x="0" y="200" width="280" height="4" rx="2" fill="#e9ecef"/>
-              <rect x="0" y="150" width="4" height="54" rx="2" fill="#e9ecef"/>
-              
-              <!-- Barras do gráfico -->
-              <rect x="20" y="170" width="30" height="30" rx="4" fill="url(#chartGradient)"/>
-              <rect x="70" y="150" width="30" height="50" rx="4" fill="url(#chartGradient)"/>
-              <rect x="120" y="130" width="30" height="70" rx="4" fill="url(#chartGradient)"/>
-              <rect x="170" y="110" width="30" height="90" rx="4" fill="url(#chartGradient)"/>
-              <rect x="220" y="80" width="30" height="120" rx="4" fill="url(#moneyGradient)"/>
-              
-              <!-- Linha de tendência -->
-              <path d="M35 185 L85 165 L135 145 L185 125 L235 95" stroke="#667eea" stroke-width="3.5" stroke-linecap="round" fill="none"/>
-              
-              <!-- Pontos na linha -->
-              <circle cx="35" cy="185" r="4" fill="#667eea"/>
-              <circle cx="85" cy="165" r="4" fill="#667eea"/>
-              <circle cx="135" cy="145" r="4" fill="#667eea"/>
-              <circle cx="185" cy="125" r="4" fill="#667eea"/>
-              <circle cx="235" cy="95" r="6" fill="#764ba2"/>
-            </g>
-            
-            <!-- Moeda principal (R$) -->
-            <g transform="translate(380, 50)">
-              <circle cx="0" cy="0" r="50" fill="url(#moneyGradient)" stroke="#764ba2" stroke-width="3"/>
-              <text x="0" y="8" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="#ffffff" text-anchor="middle">R$</text>
-              <circle cx="0" cy="0" r="50" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.3"/>
-            </g>
-            
-            <!-- Moedas pequenas flutuantes -->
-            <g transform="translate(100, 80)">
-              <circle cx="0" cy="0" r="22" fill="#667eea" opacity="0.8"/>
-              <text x="0" y="6" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#ffffff" text-anchor="middle">$</text>
-            </g>
-            
-            <g transform="translate(180, 50)">
-              <circle cx="0" cy="0" r="20" fill="#764ba2" opacity="0.8"/>
-              <text x="0" y="5" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">$</text>
-            </g>
-            
-            <!-- Seta de crescimento -->
-            <g transform="translate(200, 250)">
-              <path d="M0 0 L20 -20 L40 0" stroke="#667eea" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-              <path d="M20 -20 L20 -50" stroke="#667eea" stroke-width="5" stroke-linecap="round"/>
-            </g>
-            
-            <!-- Linhas de conexão sutis -->
-            <path d="M190 300 L240 280" stroke="#667eea" stroke-width="2" stroke-dasharray="6,6" opacity="0.3"/>
-            <path d="M190 330 L260 300" stroke="#667eea" stroke-width="2" stroke-dasharray="6,6" opacity="0.3"/>
-          </svg>
+          <div class="hero-visual" role="img" aria-label="Dashboard financeiro com indicadores e gráfico de crescimento">
+            <div class="hv-bubble hv-bubble--1">R$</div>
+            <div class="hv-bubble hv-bubble--2">$</div>
+            <div class="hv-bubble hv-bubble--3">$</div>
+
+            <div class="hv-card hv-card--main">
+              <div class="hv-card-header">
+                <span class="hv-dot hv-dot--1"></span>
+                <span class="hv-dot hv-dot--2"></span>
+                <span class="hv-dot hv-dot--3"></span>
+                <span class="hv-card-title">Financeiro</span>
+              </div>
+
+              <div class="hv-kpis">
+                <div class="hv-kpi">
+                  <span class="hv-kpi-label">Receita</span>
+                  <span class="hv-kpi-value">R$ 128k</span>
+                </div>
+                <div class="hv-kpi">
+                  <span class="hv-kpi-label">Crescimento</span>
+                  <span class="hv-kpi-value hv-kpi-value--up">+18%</span>
+                </div>
+              </div>
+
+              <div class="hv-chart" aria-hidden="true">
+                <div class="hv-bars">
+                  <div class="hv-bar hv-bar--1"></div>
+                  <div class="hv-bar hv-bar--2"></div>
+                  <div class="hv-bar hv-bar--3"></div>
+                  <div class="hv-bar hv-bar--4"></div>
+                  <div class="hv-bar hv-bar--5"></div>
+                </div>
+                <div class="hv-axis"></div>
+                <div class="hv-line"></div>
+              </div>
+            </div>
+
+            <div class="hv-card hv-card--side" aria-hidden="true">
+              <div class="hv-pill">Relatórios</div>
+              <div class="hv-side-row">
+                <span class="hv-side-dot"></span>
+                <span class="hv-side-text">Impostos em dia</span>
+              </div>
+              <div class="hv-side-row">
+                <span class="hv-side-dot"></span>
+                <span class="hv-side-text">Folha integrada</span>
+              </div>
+              <div class="hv-side-row">
+                <span class="hv-side-dot"></span>
+                <span class="hv-side-text">Conciliação</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -34,8 +34,9 @@
   padding-bottom: 45px;
   padding-left: 40px;
   padding-right: 2.75rem;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  /* Fundo sólido para não "vazar" o background escuro do footer por trás */
+  background: #ffffff;
+  border: 1px solid rgba(13, 27, 42, 0.08);
   box-shadow: 0 22px 60px rgba(0, 0, 0, 0.16);
   max-width: 980px;
   width: calc(100% - 2rem);
@@ -85,21 +86,21 @@
 }
 
 .footer-cta-btn-primary {
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  color: #120f23;
+  background: linear-gradient(90deg, #0d1b2a, #1e40af);
+  color: #ffffff;
   border: none;
-  box-shadow: 0 18px 35px rgba(118, 75, 162, 0.25);
+  box-shadow: 0 18px 35px rgba(30, 64, 175, 0.28);
 }
 
 .footer-cta-btn-secondary {
-  border: 2px solid #667eea;
-  color: #667eea;
+  border: 2px solid #1e40af;
+  color: #1e40af;
   background: transparent;
   backdrop-filter: blur(4px);
 }
 
 .footer-cta-btn-secondary:hover {
-  background: #667eea;
+  background: #1e40af;
   color: white;
 }
 
