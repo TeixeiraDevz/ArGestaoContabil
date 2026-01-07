@@ -10,24 +10,19 @@
         </p>
       </div>
       <div class="col-12 col-lg-3 d-flex justify-content-lg-center">
-        <div class="footer-illustration" aria-hidden="true">
-          <svg width="180" height="140" viewBox="0 0 180 140" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="footerGrowthGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#ffffff" stop-opacity="0.25"/>
-                <stop offset="100%" stop-color="#a0b5ff" stop-opacity="0.8"/>
-              </linearGradient>
-            </defs>
-            <rect x="10" y="90" width="20" height="40" rx="4" fill="url(#footerGrowthGradient)" opacity="0.7"/>
-            <rect x="50" y="70" width="25" height="60" rx="4" fill="url(#footerGrowthGradient)" opacity="0.8"/>
-            <rect x="95" y="55" width="28" height="75" rx="4" fill="url(#footerGrowthGradient)" opacity="0.9"/>
-            <rect x="140" y="35" width="30" height="95" rx="4" fill="url(#footerGrowthGradient)"/>
-            <path d="M15 100 L70 65 L105 80 L165 30" stroke="#667eea" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M155 35 L172 28 L165 45" fill="#667eea"/>
-            <circle cx="62" cy="64" r="5" fill="#ffffff" opacity="0.8"/>
-            <circle cx="103" cy="82" r="5" fill="#ffffff" opacity="0.8"/>
-            <circle cx="165" cy="30" r="6" fill="#ffcf6f"/>
-          </svg>
+        <div class="footer-map-container">
+          <iframe
+            class="footer-map"
+            [src]="mapUrl"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Localização AR Gestão Contábil - Av. Bispo Pedro Massa, 12, Manaus/AM"
+            aria-label="Mapa da localização da AR Gestão Contábil">
+          </iframe>
         </div>
       </div>
       

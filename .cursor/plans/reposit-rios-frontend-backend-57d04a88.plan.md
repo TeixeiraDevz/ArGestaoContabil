@@ -1,4 +1,33 @@
-<!-- 57d04a88-c486-4452-8041-8816d99e6a55 6f0ed192-4cf5-4c4e-beb4-bf399679bf31 -->
+---
+name: Elevar Design Inspirado no Stable
+overview: ""
+todos:
+  - id: 07cab788-b1ac-4390-ad8b-346039e3f42e
+    content: Adicionar variáveis CSS para paleta de cores (azul, branco, preto, roxo) no styles.scss
+    status: completed
+  - id: 7a2f434f-abcb-4ba4-9e2b-e462f2f6b3a0
+    content: Criar animações CSS com objetos de escritório (calculadora, gráficos, documentos, caneta)
+    status: completed
+  - id: edba7dc2-50b1-4e56-af99-53b9219435da
+    content: Adicionar animações sutis no hero (calculadora flutuante, gráficos, parallax)
+    status: completed
+  - id: e306c36e-220b-458c-8fea-8980f22f5f39
+    content: Melhorar animações dos cards (hover effects, micro-interações, objetos de escritório)
+    status: completed
+  - id: 70632e5c-1e38-4dee-aa21-bc8b56f613f6
+    content: Adicionar animação de contagem nos números e ícones animados na seção de métricas
+    status: pending
+  - id: 9895c1c1-e305-4e1c-9422-889c534a36d4
+    content: Melhorar tipografia com hierarquia clara e espaçamentos generosos
+    status: pending
+  - id: cf17268a-cfa5-43e8-8431-3903b8f72c85
+    content: Adicionar gradientes sutis e sombras modernas seguindo estilo Stable
+    status: pending
+  - id: 6efbf4b6-37da-4db5-b676-b6daf96485dc
+    content: Implementar micro-interações em todos os elementos interativos
+    status: pending
+---
+
 # Elevar Design Inspirado no Stable
 
 ## Objetivo
@@ -80,7 +109,7 @@ Melhorar o design do site inspirado no Stable (stableapp.cloud), adicionando ani
 
 ## Estrutura de Arquivos
 
-```
+```javascript
 frontend/src/
 ├── styles.scss (variáveis de cores e animações globais)
 ├── app/
@@ -91,6 +120,8 @@ frontend/src/
 │                   ├── home.html
 │                   └── home.ts (estilos e animações)
 ```
+
+
 
 ## Animações CSS a Implementar
 
@@ -123,15 +154,3 @@ frontend/src/
 
 - `frontend/src/styles.scss` - Variáveis CSS e animações globais
 - `frontend/src/app/app/features/home/pages/home/home.ts` - Estilos e animações da home
-- `frontend/src/app/app/features/home/pages/home/home.html` - Estrutura HTML
-
-### To-dos
-
-- [x] Adicionar variáveis CSS para paleta de cores (azul, branco, preto, roxo) no styles.scss
-- [x] Criar animações CSS com objetos de escritório (calculadora, gráficos, documentos, caneta)
-- [x] Adicionar animações sutis no hero (calculadora flutuante, gráficos, parallax)
-- [x] Melhorar animações dos cards (hover effects, micro-interações, objetos de escritório)
-- [ ] Adicionar animação de contagem nos números e ícones animados na seção de métricas
-- [ ] Melhorar tipografia com hierarquia clara e espaçamentos generosos
-- [ ] Adicionar gradientes sutis e sombras modernas seguindo estilo Stable
-- [ ] Implementar micro-interações em todos os elementos interativos

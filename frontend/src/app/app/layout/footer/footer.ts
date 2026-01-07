@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink, Router, NavigationEnd } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { filter } from 'rxjs/operators';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-footer',
@@ -74,16 +75,29 @@ import { filter } from 'rxjs/operators';
       max-width: 21rem;
     }
 
-    .footer-illustration {
-      width: 180px;
-      height: 140px;
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    .footer-map-container {
+      width: 100%;
+      max-width: 280px;
+      height: 200px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.1);
+      transition: all var(--transition-normal);
+    }
+    
+    .footer-map-container:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+      border-color: rgba(102, 126, 234, 0.4);
+    }
+    
+    .footer-map {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
     }
     
     .footer-links {
@@ -221,8 +235,10 @@ import { filter } from 'rxjs/operators';
         margin-right: auto;
       }
 
-      .footer-illustration {
+      .footer-map-container {
         margin: 1.5rem auto 0;
+        max-width: 100%;
+        height: 180px;
       }
     }
     
@@ -252,8 +268,20 @@ import { filter } from 'rxjs/operators';
 export class Footer {
   currentYear = new Date().getFullYear();
   isHomePage = false;
+  mapUrl: SafeResourceUrl;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private sanitizer: DomSanitizer
+  ) {
+    // Endereço: Av. Bispo Pedro Massa, 12, CEP 69095160 - Manaus/AM
+    // Usando o formato de embed do Google Maps (gratuito, sem API key necessária)
+    // Formato: https://www.google.com/maps?q=endereço&output=embed
+    const address = encodeURIComponent('Av. Bispo Pedro Massa, 12, Manaus - AM, 69095-160');
+    const embedUrl = `https://www.google.com/maps?q=${address}&output=embed&hl=pt-BR&z=15`;
+    
+    this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
