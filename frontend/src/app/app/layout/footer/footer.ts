@@ -1,280 +1,294 @@
 import { Component } from '@angular/core';
+import { RouterLink, Router, NavigationEnd } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { filter } from 'rxjs/operators';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  imports: [RouterLink, CommonModule],
   templateUrl: './footer.html',
-  styles: `
-    /* Contact Section */
-    .contact-section {
-      background: linear-gradient(135deg, #5e35b1 0%, #7e57c2 100%);
-      padding: 60px 0 120px;
+  styles: [`
+    .footer {
       position: relative;
+      background: transparent;
+      color: #f5f6fa;
+      margin-top: -1px;
+      overflow: visible;
     }
-
-    .contact-card {
-      background: white;
-      border-radius: 16px;
-      padding: 40px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
-      display: flex;
-      gap: 40px;
-      align-items: center;
-      flex-wrap: wrap;
+    
+    .footer-content {
+      /* Fundo azul escuro do footer */
+      margin-top: 0;
+      padding: 4.25rem 0 2.25rem;
+      padding-top: calc(var(--cta-overlap, 6rem) + 2.5rem);
+      background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 45%, #0d1b2a 100%);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      margin-bottom: 0;
     }
-
-    .contact-content {
-      flex: 1;
-      min-width: 300px;
+    
+    .footer-content::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.08), transparent 35%),
+                  radial-gradient(circle at 80% 0%, rgba(255,255,255,0.06), transparent 40%),
+                  radial-gradient(circle at 50% 100%, rgba(255,255,255,0.05), transparent 35%);
+      pointer-events: none;
+      z-index: 0;
     }
-
-    .contact-content h2 {
-      color: #2c3e50;
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 16px;
+    
+    .footer-content > .container,
+    .footer-content .container {
+      position: relative;
+      z-index: 1;
     }
-
-    .contact-content p {
-      color: #5a6c7d;
-      font-size: 14px;
-      line-height: 1.6;
-      margin: 0;
+    
+    .footer-content.no-cta {
+      margin-top: 0;
+      padding-top: 4.5rem;
     }
-
-    .contact-form {
-      flex: 1.5;
-      min-width: 400px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .form-control {
-      padding: 14px 16px;
-      border: 1px solid #e0e0e0;
-      border-radius: 8px;
-      font-size: 14px;
-      transition: all 0.3s;
-    }
-
-    .form-control:focus {
-      outline: none;
-      border-color: #ff6b35;
-      box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
-    }
-
-    .form-control::placeholder {
-      color: #a0a0a0;
-    }
-
-    .btn-whatsapp {
-      width: 100%;
-      background: linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%);
-      color: white;
-      border: none;
-      padding: 16px;
-      border-radius: 8px;
-      font-size: 16px;
-      font-weight: 600;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: all 0.3s;
-    }
-
-    .btn-whatsapp:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
-    }
-
-    /* Footer Main */
-    .footer-main {
-      background: linear-gradient(135deg, #5e35b1 0%, #7e57c2 100%);
-      color: white;
-      padding: 80px 0 40px;
-      margin-top: -60px;
-    }
-
-    .footer-logo img {
-      max-width: 180px;
-      height: auto;
-      filter: brightness(0) invert(1);
-    }
-
-    .logo-placeholder {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 12px;
-      padding: 16px 24px;
-      display: inline-block;
-    }
-
-    .logo-placeholder h3 {
-      color: white;
-      font-size: 28px;
-      font-weight: 800;
-      margin: 0;
-      letter-spacing: 2px;
-    }
-
-    .logo-placeholder .logo-subtitle {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 12px;
-      margin: 0;
-      text-align: center;
-      letter-spacing: 1px;
-      font-weight: 500;
-    }
-
-    .footer-description {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 24px;
-    }
-
-    .social-icons {
-      display: flex;
-      gap: 12px;
-    }
-
-    .social-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s;
-      text-decoration: none;
-    }
-
-    .social-icon.facebook {
-      background: #3b5998;
-    }
-
-    .social-icon.linkedin {
-      background: #0077b5;
-    }
-
-    .social-icon.instagram {
-      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-    }
-
-    .social-icon:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .social-icon svg {
-      color: white;
-    }
-
+    
+    
     .footer-title {
-      font-size: 18px;
+      color: #f5f6fa;
+      font-size: 1.35rem;
       font-weight: 700;
-      margin-bottom: 24px;
-      color: white;
+      margin-bottom: 1rem;
+      max-width: 18rem;
+    }
+    
+    .footer-subtitle {
+      color: #f5f6fa;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .footer-text {
+      color: #d5d8e6;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+      max-width: 21rem;
     }
 
+    .footer-map-container {
+      width: 100%;
+      max-width: 280px;
+      height: 200px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.1);
+      transition: all var(--transition-normal);
+    }
+    
+    .footer-map-container:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+      border-color: rgba(102, 126, 234, 0.4);
+    }
+    
+    .footer-map {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+    
     .footer-links {
       list-style: none;
       padding: 0;
-      margin: 0;
     }
-
+    
     .footer-links li {
-      margin-bottom: 12px;
+      margin-bottom: 0.75rem;
     }
-
-    .footer-links a {
-      color: rgba(255, 255, 255, 0.8);
+    
+    .footer-link {
+      color: #d5d8e6;
       text-decoration: none;
-      font-size: 14px;
-      transition: all 0.3s;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
       display: inline-block;
     }
-
-    .footer-links a:hover {
-      color: white;
-      transform: translateX(4px);
+    
+    .footer-link:hover {
+      color: #667eea;
+      transform: translateX(5px);
+      text-decoration: underline;
     }
-
-    .contact-map {
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    
+    .footer-contact .footer-link {
+      color: #d5d8e6;
     }
-
-    .contact-info {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    
+    .footer-contact .footer-link:hover {
+      color: #667eea;
+      text-decoration: underline;
     }
-
-    .contact-item {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 13px;
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin: 0;
-      line-height: 1.5;
+    
+    .footer-divider {
+      height: 1px;
+      background: rgba(255, 255, 255, 0.12);
+      border: none;
+      margin: 2rem 0;
+      margin-top: calc(var(--cta-overlap, 6rem) * 0.4);
+      position: relative;
+      z-index: 2;
     }
-
-    .contact-item svg {
+    
+    .footer-copyright {
+      color: #cdd2e3;
+      font-size: 0.875rem;
+    }
+    
+    .footer-contact svg {
+      color: #d5d8e6;
       flex-shrink: 0;
-      margin-top: 2px;
-      opacity: 0.9;
     }
-
-    /* Responsive */
-    @media (max-width: 991px) {
-      .contact-card {
-        flex-direction: column;
-        padding: 30px;
-      }
-
-      .contact-form {
-        min-width: unset;
-        width: 100%;
-      }
-
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-main {
-        padding: 60px 0 30px;
-      }
+    
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 1.5rem;
     }
-
+    
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #d5d8e6;
+      transition: all var(--transition-normal);
+      text-decoration: none;
+    }
+    
+    .social-link:hover {
+      background: rgba(102, 126, 234, 0.2);
+      color: #667eea;
+      transform: translateY(-3px) scale(1.1);
+    }
+    
+    .social-link svg {
+      width: 20px;
+      height: 20px;
+    }
+    
     @media (max-width: 768px) {
-      .contact-section {
-        padding: 40px 0 80px;
-      }
-
-      .contact-card {
-        padding: 24px;
-      }
-
-      .contact-content h2 {
-        font-size: 22px;
-      }
-
-      .footer-main {
-        margin-top: -40px;
+      .footer-social {
+        justify-content: center;
+        margin-bottom: 2rem;
       }
     }
-  `
+    
+    @media (max-width: 991px) {
+      /* responsivo do footer apenas */
+    }
+    
+    @media (max-width: 768px) {
+      .footer-content {
+        padding: 3rem 0 1.5rem;
+      }
+      
+      .footer-title {
+        font-size: 1.2rem;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
+      }
+      
+      .col-12.col-lg-5 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      
+      .footer-subtitle {
+        font-size: 1rem;
+        text-align: center;
+        margin-top: 1.5rem;
+      }
+      
+      .footer-links {
+        text-align: center;
+      }
+      
+      .footer-contact {
+        text-align: center;
+      }
+      
+      .footer-text {
+        font-size: 0.9rem;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .footer-map-container {
+        margin: 1.5rem auto 0;
+        max-width: 100%;
+        height: 180px;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .footer-content {
+        padding: 2.5rem 0 1.25rem;
+      }
+      
+      .footer-title {
+        font-size: 1.1rem;
+      }
+      
+      .footer-subtitle {
+        font-size: 0.95rem;
+      }
+      
+      .footer-text {
+        font-size: 0.85rem;
+      }
+      
+      .footer-copyright {
+        font-size: 0.8rem;
+      }
+    }
+  `]
 })
 export class Footer {
   currentYear = new Date().getFullYear();
+  isHomePage = false;
+  mapUrl: SafeResourceUrl;
+
+  constructor(
+    private router: Router,
+    private sanitizer: DomSanitizer
+  ) {
+    // Endereço: Av. Bispo Pedro Massa, 12, CEP 69095160 - Manaus/AM
+    // Usando o formato de embed do Google Maps (gratuito, sem API key necessária)
+    // Formato: https://www.google.com/maps?q=endereço&output=embed
+    const address = encodeURIComponent('Av. Bispo Pedro Massa, 12, Manaus - AM, 69095-160');
+    const embedUrl = `https://www.google.com/maps?q=${address}&output=embed&hl=pt-BR&z=15`;
+    
+    this.mapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(() => {
+        this.isHomePage = this.router.url === '/' || this.router.url === '/home';
+      });
+    
+    // Verificar rota inicial
+    this.isHomePage = this.router.url === '/' || this.router.url === '/home';
+  }
 }

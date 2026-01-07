@@ -1,0 +1,16 @@
+<div class="carousel-container">
+  <div #track class="carousel-track">
+    @for (item of getDuplicatedItems(); track item.id + '_' + $index) {
+      <div class="carousel-item">
+        @if (item.imageUrl && item.imageUrl !== placeholderImage && item.imageUrl !== '') {
+          <img [src]="item.imageUrl" [alt]="item.alt || item.title || ''" [title]="item.title" (error)="onImageError(item)" />
+        } @else {
+          <div class="logo-placeholder">
+            <span class="logo-text">{{ getInitials(item.title || item.alt || '') }}</span>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</div>
+

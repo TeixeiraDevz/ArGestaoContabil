@@ -1,1 +1,267 @@
-<p>home works!</p>
+<!-- Hero Section -->
+<section class="hero-section">
+  <!-- Formas roxas suaves e borradas no fundo -->
+  <div class="hero-blur-shapes">
+    <div class="blur-shape shape-1"></div>
+    <div class="blur-shape shape-2"></div>
+    <div class="blur-shape shape-3"></div>
+  </div>
+  
+  <div class="container">
+    <div class="row hero-row align-items-center min-vh-75">
+      <div class="col-12 col-lg-6 order-1 order-lg-1">
+        <!-- Conteúdo do hero -->
+        <div class="hero-content animate-fade-in-up">
+          <h1 class="hero-title">
+            <span class="hero-title-brand">AR Gestão Contábil e Financeira</span><br>
+            <span class="hero-title-main">Soluções completas</span><br>
+            <span class="hero-title-sub">para sua empresa crescer</span>
+          </h1>
+          <p class="hero-subtitle">
+            Gestão contábil completa com tecnologia e atendimento especializado.
+          </p>
+          <div class="hero-buttons">
+            <a routerLink="/planos" class="btn btn-primary btn-lg hero-btn-planos">Conheça nossos planos</a>
+            <a routerLink="/equipe" class="btn btn-outline-primary btn-lg hero-btn-equipe">Fale com nossa equipe</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <!-- Visual do hero (CSS-only) -->
+        <div class="hero-illustration animate-fade-in-up" style="animation-delay: 0.3s">
+          <div class="hero-visual" role="img" aria-label="Dashboard financeiro com indicadores e gráfico de crescimento">
+            <div class="hv-bubble hv-bubble--1">R$</div>
+            <div class="hv-bubble hv-bubble--2">$</div>
+            <div class="hv-bubble hv-bubble--3">$</div>
+
+            <div class="hv-card hv-card--main">
+              <div class="hv-card-header">
+                <span class="hv-dot hv-dot--1"></span>
+                <span class="hv-dot hv-dot--2"></span>
+                <span class="hv-dot hv-dot--3"></span>
+                <span class="hv-card-title">Financeiro</span>
+              </div>
+
+              <div class="hv-kpis">
+                <div class="hv-kpi">
+                  <span class="hv-kpi-label">Receita</span>
+                  <span class="hv-kpi-value">R$ 128k</span>
+                </div>
+                <div class="hv-kpi">
+                  <span class="hv-kpi-label">Crescimento</span>
+                  <span class="hv-kpi-value hv-kpi-value--up">+18%</span>
+                </div>
+              </div>
+
+              <div class="hv-chart" aria-hidden="true">
+                <div class="hv-bars">
+                  <div class="hv-bar hv-bar--1"></div>
+                  <div class="hv-bar hv-bar--2"></div>
+                  <div class="hv-bar hv-bar--3"></div>
+                  <div class="hv-bar hv-bar--4"></div>
+                  <div class="hv-bar hv-bar--5"></div>
+                </div>
+                <div class="hv-axis"></div>
+                <div class="hv-line"></div>
+              </div>
+            </div>
+
+            <div class="hv-card hv-card--side" aria-hidden="true">
+              <div class="hv-pill">Relatórios</div>
+              <div class="hv-side-row">
+                <span class="hv-side-dot"></span>
+                <span class="hv-side-text">Impostos em dia</span>
+              </div>
+              <div class="hv-side-row">
+                <span class="hv-side-dot"></span>
+                <span class="hv-side-text">Folha integrada</span>
+              </div>
+              <div class="hv-side-row">
+                <span class="hv-side-dot"></span>
+                <span class="hv-side-text">Conciliação</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Nossos Serviços -->
+<section class="services-section py-5">
+  <div class="container">
+    <div class="services-shell row align-items-center g-5">
+      <div class="col-12 col-lg-6 order-2 order-lg-1">
+        <h2 class="services-title">Atendimento especializado quando você precisar</h2>
+        <p class="services-description">
+          Unimos consultoria contábil com tecnologia para cuidar de impostos, folha de pagamento, integrações e relatórios estratégicos de forma eficiente e personalizada.
+        </p>
+        <ul class="services-list list-unstyled">
+          @for (servico of servicos; track servico.titulo) {
+            <li class="service-item">
+              <div class="service-icon">
+                @if (servico.icone === 'chart') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
+                    <path d="M7 17L7 13M12 17L12 9M17 17L17 11" stroke="#667eea" stroke-width="2.5" stroke-linecap="round"/>
+                  </svg>
+                } @else if (servico.icone === 'users') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" stroke="#667eea" stroke-width="2.5"/>
+                    <circle cx="12" cy="9" r="3.5" stroke="#667eea" stroke-width="2.5"/>
+                  </svg>
+                } @else if (servico.icone === 'file') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
+                    <path d="M14 2H8a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8z" stroke="#667eea" stroke-width="2.5"/>
+                    <polyline points="14 2 14 8 20 8" stroke="#667eea" stroke-width="2.5"/>
+                  </svg>
+                } @else if (servico.icone === 'building') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
+                    <path d="M6 20V8l6-4v16M12 20v-8l6-3v11" stroke="#667eea" stroke-width="2.5"/>
+                  </svg>
+                } @else if (servico.icone === 'link') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
+                    <path d="M8 12h8M12 8v8" stroke="#667eea" stroke-width="2.5"/>
+                    <circle cx="12" cy="12" r="3.5" stroke="#667eea" stroke-width="2.5" fill="rgba(102, 126, 234, 0.1)"/>
+                  </svg>
+                } @else {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="4" fill="rgba(102, 126, 234, 0.1)"/>
+                    <rect x="5" y="6" width="14" height="10" rx="2" stroke="#667eea" stroke-width="2.5"/>
+                    <line x1="9" y1="20" x2="15" y2="20" stroke="#667eea" stroke-width="2.5"/>
+                  </svg>
+                }
+              </div>
+              <div>
+                <h5>{{ servico.titulo }}</h5>
+                <p>{{ servico.descricao }}</p>
+              </div>
+            </li>
+          }
+        </ul>
+      </div>
+      <div class="col-12 col-lg-6 order-1 order-lg-2">
+        <div class="services-preview">
+          <div class="preview-header">
+            <span>Financeiro • Workflow</span>
+            <div class="preview-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="preview-body">
+            <div class="preview-card">
+              <p class="preview-label">Fechamento mensal</p>
+              <h4>Fluxo automatizado</h4>
+              <ul>
+                <li>Conciliação bancária com alertas</li>
+                <li>Folha integrada ao eSocial</li>
+                <li>Dashboard com tributos futuros</li>
+              </ul>
+            </div>
+            <div class="preview-board">
+              <span class="tag">Simples</span>
+              <span class="tag">Lucro Presumido</span>
+              <span class="tag">Lucro Real</span>
+              <div class="preview-graph">
+                <div class="bar bar-1"></div>
+                <div class="bar bar-2"></div>
+                <div class="bar bar-3"></div>
+                <div class="bar bar-4"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Planos -->
+<section id="planos" class="planos-section py-5">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12">
+        <h2 class="section-title">Planos personalizados</h2>
+        <p class="section-subtitle">
+          Temos soluções personalizadas para todos os momentos da sua empresa, desde novos negócios a grandes empresas
+        </p>
+      </div>
+    </div>
+    
+    <div class="row g-4">
+      @for (plano of planos; track plano.id) {
+        <div class="col-lg-4">
+          <div class="card plano-card h-100" [class.featured]="plano.id === '2'" routerLink="/planos" style="cursor: pointer;">
+            <div class="card-body p-4 d-flex flex-column">
+              <h3 class="card-title fw-bold mb-3">{{ plano.nome }}</h3>
+              <div class="mt-auto">
+                <a routerLink="/planos" class="btn btn-primary w-100">
+                  Ver detalhes do plano
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Diferenciais -->
+<section class="diferenciais-section py-5 bg-light">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12">
+        <h2 class="diferenciais-title">Nossos diferenciais</h2>
+      </div>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="diferencial-card">
+          <div class="diferencial-icon mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#667eea" viewBox="0 0 16 16">
+              <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+            </svg>
+          </div>
+          <h5 class="diferencial-subtitle">Gestão estratégica</h5>
+          <p class="diferencial-text">
+            Mais do que números, ajudamos você a tomar decisões inteligentes com informações ágeis e seguras.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="diferencial-card">
+          <div class="diferencial-icon mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#667eea" viewBox="0 0 16 16">
+              <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zm0 2a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm0 2a.5.5 0 0 0 0 1h7a.5.5 0 0 0 0-1h-7zm-1 2a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"/>
+            </svg>
+          </div>
+          <h5 class="diferencial-subtitle">Tecnologia</h5>
+          <p class="diferencial-text">
+            Usamos tecnologia de ponta para otimizar processos e oferecer soluções eficientes.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="diferencial-card">
+          <div class="diferencial-icon mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" fill="#667eea" viewBox="0 0 16 16">
+              <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.933-3.674A3.74 3.74 0 0 1 8 9c2.71 0 5.238 1.221 5.784 3H1.784Z"/>
+            </svg>
+          </div>
+          <h5 class="diferencial-subtitle">Atendimento diferenciado</h5>
+          <p class="diferencial-text">
+            Entendemos as dificuldades operacionais do seu negócio com uma equipe de especialistas.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

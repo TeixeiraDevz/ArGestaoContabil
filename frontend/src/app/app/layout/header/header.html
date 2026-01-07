@@ -1,17 +1,99 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top border-bottom">
+<button
+  class="navbar-toggler floating-navbar-toggler"
+  type="button"
+  aria-controls="mainNavbar"
+  [attr.aria-expanded]="isNavOpen"
+  aria-label="Toggle navigation"
+  [class.d-none]="!showFloatingToggler"
+  (click)="toggleNavbar()"
+>
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<nav #navbarRoot [class]="navbarClass + ' navbar-expand-lg navbar-light'">
   <div class="container">
-    <a class="navbar-brand fw-semibold" routerLink="/">AR Gestão Contábil e Financeira</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand d-flex align-items-center" routerLink="/">
+      <div class="logo-container">
+        <img
+          class="brand-logo"
+          src="logo-ar-transparent.png"
+          alt="AR Gestão Contábil e Financeira"
+          width="40"
+          height="40"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+    </a>
+    
+    <button
+      class="navbar-toggler"
+      type="button"
+      aria-controls="mainNavbar"
+      [attr.aria-expanded]="isNavOpen"
+      aria-label="Toggle navigation"
+      (click)="toggleNavbar()"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" routerLink="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/clientes">Clientes</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/equipe">Equipe</a></li>
-        <li class="nav-item"><a class="nav-link" routerLink="/login">Login</a></li>
-      </ul>
+    
+    <div
+      class="navbar-collapse"
+      id="mainNavbar"
+      #navbarCollapse
+      [class.collapse]="true"
+      [class.show]="isNavOpen"
+    >
+      <div class="navbar-nav d-flex align-items-center gap-3">
+        <a class="nav-link" routerLink="/clientes" (click)="closeNavbar()">Cliente</a>
+        <a class="nav-link" routerLink="/planos" (click)="closeNavbar()">Planos</a>
+        <div class="nav-link dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="loginDropdown"
+            role="button"
+            [attr.aria-expanded]="isLoginDropdownOpen"
+            (click)="toggleLoginDropdown($event)"
+          >
+            <span>Login</span>
+            <svg class="dropdown-arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" [class.rotated]="isLoginDropdownOpen">
+              <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="loginDropdown" [class.show]="isLoginDropdownOpen">
+            <li>
+              <a class="dropdown-item" routerLink="/login/pessoa-fisica" (click)="closeNavbar()">
+                <span class="dropdown-item-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M12 12c2.7614 0 5-2.2386 5-5s-2.2386-5-5-5-5 2.2386-5 5 2.2386 5 5 5z" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M20 21v-1c0-2.7614-2.2386-5-5-5h-6c-2.7614 0-5 2.2386-5 5v1" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <div class="dropdown-item-content">
+                  <span class="dropdown-item-title">Pessoa Física</span>
+                  <span class="dropdown-item-subtitle">Acesso individual</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/login/pessoa-juridica" (click)="closeNavbar()">
+                <span class="dropdown-item-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 22V8a1 1 0 0 1 1-1h5V4a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v18" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M10 22v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M7 10h1M7 14h1M7 18h1M15 8h2M15 12h2M15 16h2" stroke="#667eea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <div class="dropdown-item-content">
+                  <span class="dropdown-item-title">Pessoa Jurídica</span>
+                  <span class="dropdown-item-subtitle">Acesso empresarial</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
-  
 </nav>

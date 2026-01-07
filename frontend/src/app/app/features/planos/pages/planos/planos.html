@@ -1,0 +1,39 @@
+<section class="planos-hero">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10">
+        <div class="hero-content text-center">
+          <h1 class="hero-title">Planos contábeis pensados para cada fase da sua empresa</h1>
+          <p class="hero-subtitle">
+            Do primeiro CNPJ às operações consolidadas, oferecemos serviços completos, tecnologia integrada e uma equipe
+            que acompanha o crescimento do seu negócio.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" routerLink="/clientes">Quero ser cliente</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="comparison-section">
+  <div class="container">
+    <h2 class="section-title">Compare nossos planos</h2>
+    <p class="section-subtitle">
+      Escolha o plano ideal para o tamanho e necessidade da sua empresa. Todos os planos incluem suporte especializado e tecnologia de ponta.
+    </p>
+
+    <app-loading *ngIf="loading" message="Carregando planos..."></app-loading>
+
+    <div *ngIf="error" class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+
+    <app-plano-table *ngIf="!loading && !error && planos.length > 0" [planos]="planos"></app-plano-table>
+
+    <div *ngIf="!loading && !error && planos.length === 0" class="text-center text-muted py-5">
+      <p>Nenhum plano encontrado.</p>
+    </div>
+  </div>
+</section>

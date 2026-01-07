@@ -1,13 +1,69 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="utf-8">
-  <title>ArGestaoFrontend</title>
+  <title>AR Gestão Contábil e Financeira</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta name="google" content="notranslate">
+  <link rel="icon" type="image/png" href="logo-ar-transparent.png">
+  <style>
+    /* Avoid scroll animations affecting initial position. */
+    html { scroll-behavior: auto !important; }
+
+    /* Keep the app hidden during hard reload until we force scroll top. */
+    html.__scrollfix_boot app-root { visibility: hidden; }
+    html.__scrollfix_boot #__scrollfix_splash { display: block; }
+    #__scrollfix_splash {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #eaf4ff;
+      z-index: 2147483647;
+    }
+  </style>
+  <script>
+    // Chrome may restore scroll position on hard reload (F5), showing the footer for a moment.
+    // Strategy: hide the Angular root during reload and reveal only after we force scroll to top.
+    (function () {
+      var debug = /(?:\?|&)debugScroll=1(?:&|$)/.test(location.search);
+      var html = document.documentElement;
+      html.classList.add('__scrollfix_boot');
+      if (debug) console.log('[scroll-fix] enabled', { href: location.href });
+
+      var toTop = function () {
+        window.scrollTo(0, 0);
+        if (debug) console.log('[scroll-fix] toTop', { y: window.scrollY });
+      };
+
+      var reveal = function () {
+        html.classList.remove('__scrollfix_boot');
+        if (debug) console.log('[scroll-fix] reveal');
+      };
+
+      // Hide the current document instantly when reloading so it can't flash at the footer.
+      window.addEventListener('beforeunload', function () {
+        html.classList.add('__scrollfix_boot');
+      });
+
+      // Wait a bit after load to allow the browser to finish any restoration, then force top and reveal.
+      window.addEventListener('load', function () {
+        setTimeout(function () {
+          toTop();
+          requestAnimationFrame(function () {
+            toTop();
+            requestAnimationFrame(function () {
+              toTop();
+              reveal();
+            });
+          });
+        }, 450);
+      }, { once: true });
+    })();
+  </script>
 </head>
 <body>
+  <div id="__scrollfix_splash" aria-hidden="true"></div>
   <app-root></app-root>
 </body>
 </html>
