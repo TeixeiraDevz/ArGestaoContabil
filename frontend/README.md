@@ -36,6 +36,14 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
+## Deploy (Vercel)
+
+This app reads the API base URL at runtime from `/env.js`.
+
+- In Vercel, configure the environment variable **`API_URL`** (example: `https://api.seudominio.com`).
+- The deploy build uses `npm run build:vercel`, which generates `public/env.js` from Vercel env vars.
+- If your Vercel project uses **Root Directory = `frontend/`**, the config file used is `frontend/vercel.json`.
+
 ## Running unit tests
 
 To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
