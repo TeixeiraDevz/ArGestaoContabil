@@ -1,9 +1,9 @@
 <div class="login-container">
   <div class="login-wrapper">
     <!-- Left side: Login Card -->
-    <div class="login-form-section" [class.animate]="imageLoaded">
+    <div class="login-form-section">
       <div class="login-card">
-        <h2 class="login-title">Welcome</h2>
+        <h2 class="login-title">Login</h2>
         <p class="login-subtitle">Log in to your account to continue</p>
         
         <form class="login-form" (ngSubmit)="onSubmit()">
@@ -65,15 +65,8 @@
       </div>
     </div>
 
-    <!-- Wavy separator (Cobrinha) -->
-    <div class="wavy-separator">
-      <svg viewBox="0 0 120 1000" preserveAspectRatio="none" class="wavy-svg">
-        <path d="M0,0 C25,100 25,200 0,350 C25,500 25,600 0,750 C25,900 25,1000 0,1000 L120,1000 L120,0 Z" fill="#ffffff"/>
-      </svg>
-    </div>
-
     <!-- Right side: Office Image -->
-    <div class="login-image-section" [class.animate]="true">
+    <div class="login-image-section">
       <img 
         src="office - login -image.jpg" 
         alt="Modern Office" 

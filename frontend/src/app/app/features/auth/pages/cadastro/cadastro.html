@@ -1,7 +1,7 @@
 <div class="cadastro-container">
   <div class="cadastro-wrapper">
     <!-- Left side: Office Image -->
-    <div class="cadastro-image-section" [class.animate]="true">
+    <div class="cadastro-image-section">
       <img 
         src="office - login -image.jpg" 
         alt="Modern Office" 
@@ -13,17 +13,10 @@
       <div class="office-placeholder" *ngIf="imageError"></div>
     </div>
 
-    <!-- Wavy separator (Cobrinha) -->
-    <div class="wavy-separator">
-      <svg viewBox="0 0 120 1000" preserveAspectRatio="none" class="wavy-svg">
-        <path d="M120,0 C95,100 95,200 120,350 C95,500 95,600 120,750 C95,900 95,1000 120,1000 L0,1000 L0,0 Z" fill="#ffffff"/>
-      </svg>
-    </div>
-
     <!-- Right side: Cadastro Card -->
-    <div class="cadastro-form-section" [class.animate]="imageLoaded">
+    <div class="cadastro-form-section">
       <div class="cadastro-card">
-        <h2 class="cadastro-title">Welcome</h2>
+        <h2 class="cadastro-title">Cadastro</h2>
         <p class="cadastro-subtitle">Create an account to get started</p>
         
         <form class="cadastro-form" (ngSubmit)="onSubmit()">

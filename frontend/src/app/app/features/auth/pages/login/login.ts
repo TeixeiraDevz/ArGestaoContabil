@@ -18,9 +18,12 @@ import { CommonModule } from '@angular/common';
     .login-container {
       min-height: 100vh;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       padding: 2rem;
+      padding-top: 8rem;
+      padding-bottom: 4rem;
+      margin-top: 0;
     }
 
     .login-wrapper {
@@ -31,7 +34,7 @@ import { CommonModule } from '@angular/common';
       background: #ffffff;
       border-radius: 24px;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-      overflow: visible;
+      overflow: hidden;
       position: relative;
     }
     
@@ -49,15 +52,13 @@ import { CommonModule } from '@angular/common';
     }
 
     .login-form-section {
-      flex: 0 0 55%;
+      flex: 0 0 50%;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: center;
       padding: 3rem;
+      padding-top: 4rem;
       background: #ffffff;
-      opacity: 0;
-      transform: translateX(-50px);
-      transition: opacity 0.6s ease-out 0.3s, transform 0.6s ease-out 0.3s;
       position: relative;
       z-index: 2;
       overflow-y: auto;
@@ -65,81 +66,27 @@ import { CommonModule } from '@angular/common';
       border-radius: 24px 0 0 24px;
     }
 
-    .login-form-section.animate {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    .wavy-separator {
-      position: absolute;
-      left: 55%;
-      width: 120px;
-      height: 100%;
-      z-index: 3;
-      pointer-events: none;
-      top: 0;
-      bottom: 0;
-      transform: translateX(-60px);
-    }
-
-    .wavy-svg {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
-    }
-
-    .wavy-svg path {
-      fill: #ffffff;
-      filter: drop-shadow(-3px 0 6px rgba(0, 0, 0, 0.08));
-    }
-
     .login-image-section {
-      flex: 1;
+      flex: 0 0 50%;
       position: relative;
-      overflow: visible;
-      opacity: 0;
-      transform: translateX(50px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      overflow: hidden;
       z-index: 1;
       min-height: 600px;
     }
 
-    .login-image-section.animate {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
     .office-image {
-      width: calc(100% + 300px);
+      width: 100%;
       height: 100%;
       min-height: 600px;
       object-fit: cover;
       object-position: left center;
       display: block;
-      position: absolute;
-      top: 0;
-      left: -300px;
-      z-index: 0;
-    }
-    
-    .login-image-section:not(.animate) .office-image {
-      transform: translateX(-50px);
-    }
-    
-    .login-image-section.animate .office-image {
-      transform: translateX(0);
-      transition: transform 0.6s ease-out;
     }
 
     .office-placeholder {
-      width: calc(100% + 300px);
+      width: 100%;
       height: 100%;
       min-height: 600px;
-      position: absolute;
-      top: 0;
-      left: -300px;
       background: linear-gradient(135deg, #a8c5e2 0%, #667eea 50%, #764ba2 100%);
       background-image: 
         url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000"><defs><linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23e3f2fd;stop-opacity:1" /><stop offset="100%" style="stop-color:%23bbdefb;stop-opacity:1" /></linearGradient><linearGradient id="window" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23b3e5fc;stop-opacity:0.8" /><stop offset="100%" style="stop-color:%2390caf9;stop-opacity:0.6" /></linearGradient></defs><rect width="1600" height="1000" fill="url(%23bg)"/><rect x="0" y="700" width="1600" height="300" fill="%23f5f5f5"/><rect x="50" y="200" width="500" height="400" fill="url(%23window)" rx="4"/><rect x="600" y="200" width="500" height="400" fill="url(%23window)" rx="4"/><rect x="1150" y="200" width="400" height="400" fill="url(%23window)" rx="4"/><rect x="80" y="250" width="440" height="320" fill="%23ffffff" opacity="0.3"/><rect x="630" y="250" width="440" height="320" fill="%23ffffff" opacity="0.3"/><rect x="1180" y="250" width="340" height="320" fill="%23ffffff" opacity="0.3"/><rect x="100" y="650" width="300" height="200" fill="%23ffffff" rx="8" opacity="0.9"/><rect x="450" y="650" width="300" height="200" fill="%23ffffff" rx="8" opacity="0.9"/><rect x="800" y="650" width="300" height="200" fill="%23ffffff" rx="8" opacity="0.9"/><rect x="1150" y="650" width="300" height="200" fill="%23ffffff" rx="8" opacity="0.9"/><rect x="120" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><rect x="220" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><rect x="470" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><rect x="570" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><rect x="820" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><rect x="920" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><rect x="1170" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><rect x="1270" y="680" width="80" height="120" fill="%23e0e0e0" rx="4"/><circle cx="160" cy="740" r="12" fill="%23667eea" opacity="0.6"/><circle cx="260" cy="740" r="12" fill="%23667eea" opacity="0.6"/><circle cx="510" cy="740" r="12" fill="%23667eea" opacity="0.6"/><circle cx="610" cy="740" r="12" fill="%23667eea" opacity="0.6"/><circle cx="860" cy="740" r="12" fill="%23667eea" opacity="0.6"/><circle cx="960" cy="740" r="12" fill="%23667eea" opacity="0.6"/><circle cx="1210" cy="740" r="12" fill="%23667eea" opacity="0.6"/><circle cx="1310" cy="740" r="12" fill="%23667eea" opacity="0.6"/><rect x="150" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="250" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="350" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="700" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="800" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="900" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="1250" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="1350" y="300" width="60" height="80" fill="%23ffffff" opacity="0.5" rx="4"/><rect x="200" y="450" width="200" height="150" fill="%23e3f2fd" opacity="0.4" rx="6"/><rect x="750" y="450" width="200" height="150" fill="%23e3f2fd" opacity="0.4" rx="6"/><rect x="1300" y="450" width="150" height="150" fill="%23e3f2fd" opacity="0.4" rx="6"/></svg>');
@@ -323,10 +270,6 @@ import { CommonModule } from '@angular/common';
       .login-form-section {
         flex: 1;
         padding: 2rem 1.5rem;
-      }
-
-      .wavy-separator {
-        display: none;
       }
 
       .login-image-section {
