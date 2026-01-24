@@ -1,5 +1,5 @@
-import { writeFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
 
 const apiUrl = process.env.API_URL || process.env.AR_API_URL;
 
@@ -8,7 +8,11 @@ if (!apiUrl) {
   process.exit(1);
 }
 
-const outPath = resolve(process.cwd(), 'public', 'env.js');
+const outPath = resolve(
+  process.cwd(),
+  process.env.ENV_JS_OUT_PATH ?? 'dist/ar-gestao-frontend/browser/env.js'
+);
+mkdirSync(dirname(outPath), { recursive: true });
 const contents =
   [
     '/* eslint-disable */',
