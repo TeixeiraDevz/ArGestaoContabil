@@ -5,7 +5,7 @@
   
   <div class="container">
     <div class="row hero-row align-items-center min-vh-75">
-      <div class="col-12 col-lg-8">
+      <div class="col-12 col-lg-6 offset-lg-6">
         <!-- Conteúdo do hero -->
         <div class="hero-content animate-fade-in-up">
           <h1 class="hero-title">
@@ -28,102 +28,77 @@
 <!-- Nossos Serviços -->
 <section class="services-section py-5">
   <div class="container">
-    <div class="services-shell row align-items-center g-5">
-      <div class="col-12 col-lg-6 order-2 order-lg-1">
-        <h2 class="services-title">Atendimento especializado quando você precisar</h2>
-        <p class="services-description">
-          Unimos consultoria contábil com tecnologia para cuidar de impostos, folha de pagamento, integrações e relatórios estratégicos de forma eficiente e personalizada.
-        </p>
-        <ul class="services-list list-unstyled">
-          @for (servico of servicos; track servico.titulo) {
-            <li class="service-item">
-              <div class="service-icon-wrapper">
-                <div class="service-icon">
-                  @if (servico.icone === 'chart') {
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <line x1="12" x2="12" y1="20" y2="10"></line>
-                      <line x1="18" x2="18" y1="20" y2="4"></line>
-                      <line x1="6" x2="6" y1="20" y2="16"></line>
-                    </svg>
-                  } @else if (servico.icone === 'users') {
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="9" cy="7" r="4"></circle>
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                    </svg>
-                  } @else if (servico.icone === 'file') {
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                      <polyline points="14 2 14 8 20 8"></polyline>
-                      <line x1="16" x2="8" y1="13" y2="13"></line>
-                      <line x1="16" x2="8" y1="17" y2="17"></line>
-                      <polyline points="10 9 9 9 8 9"></polyline>
-                    </svg>
-                  } @else if (servico.icone === 'building') {
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M3 21h18"></path>
-                      <path d="M5 21V7l8-4v18"></path>
-                      <path d="M19 21V11l-6-4"></path>
-                      <line x1="9" x2="9" y1="9" y2="9"></line>
-                      <line x1="9" x2="9" y1="12" y2="12"></line>
-                      <line x1="9" x2="9" y1="15" y2="15"></line>
-                      <line x1="9" x2="9" y1="18" y2="18"></line>
-                    </svg>
-                  } @else if (servico.icone === 'link') {
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                    </svg>
-                  } @else {
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                      <line x1="8" x2="16" y1="21" y2="21"></line>
-                      <line x1="12" x2="12" y1="17" y2="21"></line>
-                    </svg>
-                  }
-                </div>
-              </div>
-              <div class="service-content">
-                <h5 class="service-title">{{ servico.titulo }}</h5>
-                <p class="service-description">{{ servico.descricao }}</p>
-              </div>
-            </li>
-          }
-        </ul>
-      </div>
-      <div class="col-12 col-lg-6 order-1 order-lg-2">
-        <div class="services-preview">
-          <div class="preview-header">
-            <span>Financeiro • Workflow</span>
-            <div class="preview-dots">
-              <span></span><span></span><span></span>
-            </div>
+    <div class="services-header text-center">
+      <h2 class="services-title">Atendimento especializado quando você precisar</h2>
+      <p class="services-description">
+        Unimos consultoria contábil com tecnologia para cuidar de impostos, folha de pagamento, integrações e relatórios estratégicos de forma eficiente e personalizada.
+      </p>
+    </div>
+    <div class="services-grid">
+      @for (servico of servicos; track servico.titulo) {
+        <div class="service-card">
+          <div class="service-icon">
+            @if (servico.icone === 'chart') {
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" x2="12" y1="20" y2="10"></line>
+                <line x1="18" x2="18" y1="20" y2="4"></line>
+                <line x1="6" x2="6" y1="20" y2="16"></line>
+              </svg>
+            } @else if (servico.icone === 'users') {
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            } @else if (servico.icone === 'file') {
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" x2="8" y1="13" y2="13"></line>
+                <line x1="16" x2="8" y1="17" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            } @else if (servico.icone === 'building') {
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18"></path>
+                <path d="M5 21V7l8-4v18"></path>
+                <path d="M19 21V11l-6-4"></path>
+                <line x1="9" x2="9" y1="9" y2="9"></line>
+                <line x1="9" x2="9" y1="12" y2="12"></line>
+                <line x1="9" x2="9" y1="15" y2="15"></line>
+                <line x1="9" x2="9" y1="18" y2="18"></line>
+              </svg>
+            } @else if (servico.icone === 'link') {
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+            } @else {
+              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" x2="16" y1="21" y2="21"></line>
+                <line x1="12" x2="12" y1="17" y2="21"></line>
+              </svg>
+            }
           </div>
-          <div class="preview-body">
-            <div class="preview-card">
-              <p class="preview-label">Fechamento mensal</p>
-              <h4>Fluxo automatizado</h4>
-              <ul>
-                <li>Conciliação bancária com alertas</li>
-                <li>Folha integrada ao eSocial</li>
-                <li>Dashboard com tributos futuros</li>
-              </ul>
-            </div>
-            <div class="preview-board">
-              <span class="tag">Simples</span>
-              <span class="tag">Lucro Presumido</span>
-              <span class="tag">Lucro Real</span>
-              <div class="preview-graph">
-                <div class="bar bar-1"></div>
-                <div class="bar bar-2"></div>
-                <div class="bar bar-3"></div>
-                <div class="bar bar-4"></div>
-              </div>
-            </div>
-          </div>
+          <h5 class="service-title">{{ servico.titulo }}</h5>
+          <ul class="service-list">
+            <li>{{ servico.descricao }}</li>
+          </ul>
         </div>
+      }
+    </div>
+    <div class="services-cta">
+      <div class="services-cta-marker">
+        <span class="services-cta-dot"></span>
+        <span class="services-cta-line"></span>
       </div>
+      <h3 class="services-cta-title">E muito mais para o seu negócio...</h3>
+      <a routerLink="/contato" class="services-cta-btn">
+        Fale com um profissional
+        <span class="services-cta-btn-icon">→</span>
+      </a>
     </div>
   </div>
 </section>

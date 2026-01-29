@@ -26,6 +26,7 @@ todos:
   - id: 6efbf4b6-37da-4db5-b676-b6daf96485dc
     content: Implementar micro-interações em todos os elementos interativos
     status: pending
+isProject: false
 ---
 
 # Elevar Design Inspirado no Stable
@@ -120,8 +121,6 @@ frontend/src/
 │                   ├── home.html
 │                   └── home.ts (estilos e animações)
 ```
-
-
 
 ## Animações CSS a Implementar
 

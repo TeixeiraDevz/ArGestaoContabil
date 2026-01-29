@@ -39,6 +39,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       pointer-events: none;
       z-index: 0;
     }
+
     
     .footer-content > .container,
     .footer-content .container {
@@ -53,8 +54,11 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     
     
     .footer-logo-section {
-      margin-bottom: 1.5rem;
+      margin-bottom: 0.5rem;
       background: transparent;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
     }
     
     .footer-logo-img {
@@ -66,6 +70,35 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       background: transparent;
       mix-blend-mode: normal;
       filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+    }
+
+    .footer-logo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      color: #9bb6da;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    .footer-logo-title {
+      font-size: 1.02rem;
+    }
+
+    .footer-logo-subtitle {
+      font-size: 0.95rem;
+      color: #d5d8e6;
+      font-weight: 500;
+    }
+
+    .footer-slogan {
+      color: var(--color-blue);
+      font-weight: 600;
+      white-space: nowrap;
+      font-size: 0.92rem;
+      margin-top: 0.2rem;
+      margin-bottom: 1.5rem !important;
     }
     
     .footer-title {
@@ -81,6 +114,10 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       font-size: 1.1rem;
       font-weight: 600;
       margin-bottom: 1rem;
+    }
+
+    .footer-contact-col .footer-subtitle {
+      margin-bottom: 0.6rem;
     }
     
     .footer-text {
@@ -101,6 +138,10 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       border: 2px solid rgba(255, 255, 255, 0.15);
       background: rgba(255, 255, 255, 0.1);
       transition: all var(--transition-normal);
+    }
+
+    .footer-contact {
+      margin-top: 0.35rem;
     }
     
     .footer-map-container:hover {
@@ -145,7 +186,11 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     }
     
     .footer-contact .footer-text {
-      gap: 0.6rem;
+      gap: 0.85rem;
+    }
+
+    .footer-contact .footer-phone-secondary {
+      padding-left: calc(19px + 0.90rem);
     }
 
     .footer-contact .footer-link:hover {
@@ -180,6 +225,14 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       justify-content: flex-start;
       margin-bottom: 0;
     }
+
+    .footer-social-below {
+      margin-top: 0.75rem;
+    }
+
+    .footer-slogan-spaced {
+      margin-top: 1.25rem;
+    }
     
     .social-link {
       display: inline-flex;
@@ -187,8 +240,8 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       justify-content: center;
       width: 40px;
       height: 40px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.12);
       color: #d5d8e6;
       transition: all var(--transition-normal);
       text-decoration: none;
@@ -222,50 +275,85 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       }
       
       .footer-logo-img {
-        margin: 0 auto;
-        max-width: 230px;
-        max-height: 96px;
+        margin: 0;
+        max-width: 200px;
+        max-height: 92px;
+      }
+
+      .footer-logo-text {
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .footer-logo-title {
+        font-size: 1rem;
+      }
+
+      .footer-logo-subtitle {
+        font-size: 0.9rem;
       }
       
       .footer-title {
         font-size: 1.2rem;
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
+        text-align: left;
+        margin-left: 0;
+        margin-right: 0;
         max-width: 100%;
       }
       
-      .col-12.col-lg-4 {
+      .footer-brand {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .footer-links-col {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+      }
+
+      .footer-contact-col {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
       }
       
       .footer-subtitle {
         font-size: 1rem;
-        text-align: center;
-        margin-top: 1.5rem;
+        text-align: left;
+        margin-top: 1.25rem;
       }
       
       .footer-links {
-        text-align: center;
+        text-align: left;
       }
       
       .footer-contact {
-        text-align: center;
+        text-align: left;
+        width: 100%;
+        max-width: 420px;
+        margin: 0;
+      }
+
+      .footer-contact .footer-text {
+        max-width: 100%;
+        justify-content: flex-start;
       }
       
       .footer-text {
         font-size: 0.9rem;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 0;
+        margin-right: 0;
+        max-width: 100%;
       }
 
       .footer-map-container {
-        margin: 1.5rem auto 0;
+        margin: 1.5rem 0 0;
         max-width: 100%;
-        height: 180px;
+        height: 200px;
       }
     }
     
@@ -291,8 +379,16 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       }
 
       .footer-logo-img {
-        max-width: 220px;
-        max-height: 90px;
+        max-width: 180px;
+        max-height: 86px;
+      }
+
+      .footer-logo-title {
+        font-size: 0.95rem;
+      }
+
+      .footer-logo-subtitle {
+        font-size: 0.85rem;
       }
     }
   `]
