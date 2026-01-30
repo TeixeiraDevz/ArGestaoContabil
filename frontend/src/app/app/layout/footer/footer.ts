@@ -23,6 +23,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       padding: 4.25rem 0 2.25rem;
       padding-top: calc(var(--cta-overlap, 6rem) + 2.5rem);
       background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 45%, #0d1b2a 100%);
+      border-radius: 24px 24px 0 0;
       position: relative;
       z-index: 1;
       overflow: hidden;
@@ -186,7 +187,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     }
     
     .footer-contact .footer-text {
-      gap: 0.85rem;
+      gap: 1.1rem;
     }
 
     .footer-contact .footer-phone-secondary {

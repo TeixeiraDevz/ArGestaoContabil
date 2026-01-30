@@ -58,7 +58,7 @@ import { Plano } from '../../../../../core/models/plano.model';
       right: 0;
       bottom: 0;
       z-index: 1;
-      background-image: url('/imagem-empresa.png');
+      background-image: url('/imagem - empresa.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -295,9 +295,9 @@ import { Plano } from '../../../../../core/models/plano.model';
       background: transparent;
       padding: 0;
       max-width: 680px;
-      margin-left: auto;
-      margin-right: 0;
-      padding-right: 1.25rem;
+      margin-left: 0;
+      margin-right: auto;
+      padding-right: 0;
       text-align: left;
       display: flex;
       flex-direction: column;
@@ -807,7 +807,7 @@ import { Plano } from '../../../../../core/models/plano.model';
     .planos-section {
       margin-top: 4.5rem;
       padding-top: 5rem;
-      background: transparent;
+      background: rgba(227, 242, 253, 0.7);
       border-radius: 24px;
     }
     

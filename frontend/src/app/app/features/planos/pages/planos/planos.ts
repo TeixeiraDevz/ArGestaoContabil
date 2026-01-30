@@ -110,7 +110,8 @@ import { LoadingComponent } from '../../../../../shared/components/loading/loadi
 
     .comparison-section {
       padding: 5rem 0;
-      background: var(--color-white);
+      background: rgba(227, 242, 253, 0.7);
+      border-radius: 32px;
     }
 
     .section-title {
