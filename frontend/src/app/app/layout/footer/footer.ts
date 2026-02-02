@@ -144,17 +144,12 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       color: #d5d8e6;
     }
     
-    .footer-contact .footer-text {
-      gap: 0;
-    }
-
     .footer-contact-phone-row {
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
       align-items: flex-start;
     }
-
     .footer-contact-phone-row .footer-contact-icon-phone {
       margin-top: 0;
       align-self: flex-start;
@@ -177,7 +172,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       gap: 0.2rem;
     }
 
-    .footer-contact-content.flex-column .footer-link {
+    .footer-contact-content.d-flex.flex-column .footer-link {
       display: block;
     }
 

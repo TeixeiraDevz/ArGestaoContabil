@@ -547,6 +547,11 @@ export class Planos implements OnInit {
     }
   }
 
+  getWhatsAppUrl(planoNome: string): string {
+    const mensagem = encodeURIComponent(`Olá! Tenho interesse no plano ${planoNome}.`);
+    return `${WHATSAPP_BASE}?text=${mensagem}`;
+  }
+
   private getPlanosMockados(): Plano[] {
     return [
       {

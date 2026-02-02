@@ -25,6 +25,7 @@
 @import "bootstrap/scss/card";
 @import "bootstrap/scss/forms";
 @import "bootstrap/scss/utilities";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&display=swap');
 
 /* Optional: enable color mode toggle via data attribute */
 :root,
@@ -80,6 +81,9 @@ html[data-bs-theme='dark'] {
   --transition-fast: 0.2s ease;
   --transition-normal: 0.3s ease;
   --transition-slow: 0.5s ease;
+
+  --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Playfair Display', 'Times New Roman', serif;
 }
 
 /* Animações com Objetos de Escritório */
@@ -265,7 +269,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-body);
   line-height: 1.6;
   background: var(--site-bg);
   position: relative;
@@ -308,6 +312,7 @@ app-root {
 
 /* Tipografia melhorada */
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.2;
   color: var(--color-black);

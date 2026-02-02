@@ -625,7 +625,7 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     .services-description {
-      color: #6c757d;
+      color: var(--color-gray-dark);
       font-size: 0.95rem;
       margin-bottom: 1.25rem;
       text-align: center;
@@ -982,7 +982,7 @@ import { Plano } from '../../../../../core/models/plano.model';
     
     .section-subtitle {
       font-size: 1rem;
-      color: #6c757d;
+      color: var(--color-gray-dark);
       margin-bottom: 2.5rem;
       line-height: 1.6;
       max-width: 700px;
@@ -1077,7 +1077,7 @@ import { Plano } from '../../../../../core/models/plano.model';
     
     .diferencial-text {
       font-size: 0.95rem;
-      color: #6c757d;
+      color: var(--color-gray-dark);
       line-height: 1.6;
       margin-bottom: 0;
       text-align: left;
