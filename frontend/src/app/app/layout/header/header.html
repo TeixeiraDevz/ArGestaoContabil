@@ -45,20 +45,11 @@
         [class.show]="isNavOpen"
       >
         <div class="navbar-nav d-flex align-items-center gap-3">
-          <a class="nav-link" routerLink="/clientes" (click)="closeNavbar()">Cliente</a>
+          <a class="nav-link" routerLink="/clientes" (click)="closeNavbar()">Clientes</a>
           <a class="nav-link" routerLink="/planos" (click)="closeNavbar()">Planos</a>
         </div>
       </div>
     </div>
   </nav>
 
-  <!-- Navbar Right: Já sou cliente + Quero ser cliente -->
-  <nav #navbarRight [class]="navbarClass + ' navbar-expand-lg navbar-light navbar-right'">
-    <div class="container">
-      <div class="navbar-nav d-flex align-items-center gap-3">
-        <a class="nav-link" routerLink="/login" (click)="closeNavbar()">Já sou cliente</a>
-        <a class="nav-link" routerLink="/cadastro" (click)="closeNavbar()">Quero ser cliente</a>
-      </div>
-    </div>
-  </nav>
 </div>

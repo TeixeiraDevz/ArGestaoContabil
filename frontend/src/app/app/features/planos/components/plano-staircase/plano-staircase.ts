@@ -20,9 +20,10 @@ import { Plano } from '../../../../../core/models/plano.model';
       align-items: center;
       gap: 2rem;
       padding: 0;
-      background: #ffffff;
-      border-radius: 0;
+      background: transparent;
+      border: none;
       box-shadow: none;
+      border-radius: 0;
       transition: none;
     }
 
@@ -113,7 +114,7 @@ import { Plano } from '../../../../../core/models/plano.model';
     .btn-saiba-mais {
       align-self: flex-start;
       padding: 0.75rem 2rem;
-      background: linear-gradient(140deg, #667eea 0%, #764ba2 100%);
+      background: linear-gradient(90deg, #0d1b2a, #1e40af);
       color: white;
       border: none;
       border-radius: 50px;
@@ -126,7 +127,7 @@ import { Plano } from '../../../../../core/models/plano.model';
 
     .btn-saiba-mais:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+      box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
     }
 
     @media (max-width: 768px) {

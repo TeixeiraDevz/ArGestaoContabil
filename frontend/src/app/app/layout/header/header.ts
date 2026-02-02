@@ -9,7 +9,7 @@ import { filter } from 'rxjs/operators';
   styles: [`
     .navbar-wrapper {
       position: fixed;
-      top: 0;
+      top: 1.5rem;
       left: 0;
       right: 0;
       z-index: 1000;
@@ -43,18 +43,9 @@ import { filter } from 'rxjs/operators';
       transform: translateX(-50%) translateY(-100%);
     }
     
-    .navbar-right {
-      justify-content: flex-end;
-      margin-left: auto;
-    }
-    
     .navbar.hidden {
       pointer-events: none;
       opacity: 0;
-    }
-    
-    .navbar-right.hidden {
-      transform: translateY(-100%);
     }
     
     .navbar.hidden .container {
@@ -64,6 +55,7 @@ import { filter } from 'rxjs/operators';
     .navbar .container {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(102, 126, 234, 0.15);
@@ -123,9 +115,6 @@ import { filter } from 'rxjs/operators';
       transform: translateX(-50%) translateY(0);
     }
     
-    .navbar-right.visible {
-      transform: translateY(0);
-    }
     
     .navbar-brand:hover {
       transform: scale(1.05);
@@ -389,10 +378,6 @@ import { filter } from 'rxjs/operators';
         transform: translateY(0);
       }
       
-      .navbar-right {
-        margin-left: 0;
-      }
-      
       .navbar .container {
         border-radius: 20px;
         padding: 0.75rem 1.5rem;
@@ -400,6 +385,7 @@ import { filter } from 'rxjs/operators';
         max-width: 100%;
         margin: 0;
         min-width: auto;
+        gap: 0.75rem;
       }
       
       /* Esconder o hambúrguer normal quando a navbar está escondida */
@@ -421,6 +407,7 @@ import { filter } from 'rxjs/operators';
         margin-left: -1rem;
         margin-right: -1rem;
         margin-top: 0.75rem;
+        width: 100%;
       }
       
       .navbar-collapse.show {
@@ -439,6 +426,7 @@ import { filter } from 'rxjs/operators';
         padding: 0.75rem 1rem !important;
         border-radius: 8px;
         transition: background-color var(--transition-fast);
+        font-size: 0.95rem;
       }
       
       .nav-link:hover {
@@ -484,11 +472,18 @@ import { filter } from 'rxjs/operators';
       
       .navbar-collapse {
         padding: 0.75rem;
+        margin-left: 0;
+        margin-right: 0;
       }
 
       .logo-container .brand-logo {
         height: 34px;
         max-width: 120px;
+      }
+
+      .nav-link {
+        font-size: 1rem;
+        padding: 0.85rem 1rem !important;
       }
     }
   `]
@@ -496,7 +491,6 @@ import { filter } from 'rxjs/operators';
 export class Header implements OnInit, OnDestroy {
   @ViewChild('navbarCollapse') navbarCollapse?: ElementRef<HTMLElement>;
   @ViewChild('navbarRoot') navbarRoot?: ElementRef<HTMLElement>;
-  @ViewChild('navbarRight') navbarRight?: ElementRef<HTMLElement>;
   private lastScrollY = 0;
   navbarClass = 'navbar visible';
 
@@ -640,11 +634,10 @@ export class Header implements OnInit, OnDestroy {
   onDocumentClick(event: MouseEvent): void {
     const target = event.target as HTMLElement;
     const clickedInsideNavbar = this.navbarRoot?.nativeElement.contains(target) ?? false;
-    const clickedInsideNavbarRight = this.navbarRight?.nativeElement.contains(target) ?? false;
     const clickedFloatingToggler = !!target.closest('.floating-navbar-toggler');
 
     // Se clicou fora do header, fechar menu (mobile/tablet)
-    if (this.isNavOpen && !clickedInsideNavbar && !clickedInsideNavbarRight && !clickedFloatingToggler) {
+    if (this.isNavOpen && !clickedInsideNavbar && !clickedFloatingToggler) {
       this.closeNavbar();
     }
   }

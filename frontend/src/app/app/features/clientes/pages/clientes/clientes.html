@@ -8,31 +8,63 @@
   </div>
 </section>
 
-<div class="partners-section">
+<section class="clients-categories">
   <div class="container">
-    <div class="partners-wrapper">
-      <div class="partners-copy">
-        <h2 class="section-title">Empresas parceiras que confiam no nosso trabalho</h2>
-        <p>Conectamos sua contabilidade com ERPs, CRMs e hubs logísticos para manter dados fluindo sem esforço.</p>
+    <div class="categories-header">
+      <span class="partners-pill">Segmentos atendidos</span>
+      <h2 class="section-title">Empresas atendidas por área</h2>
+      <p class="categories-subtitle">
+        Organizamos nossos clientes por segmento para facilitar a visualização das áreas em que atuamos.
+      </p>
+    </div>
+
+    <div class="categories-grid">
+      <div class="category-card" *ngFor="let category of clientCategories">
+        <div class="category-header">
+          <div class="category-icon">
+            <ng-container [ngSwitch]="category.icon">
+              <svg *ngSwitchCase="'construction'" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m2 21 1-1c2-2 4-3 6-3"></path>
+                <path d="m6 17 7-7 2 2-7 7-3 1 1-3z"></path>
+                <path d="m14 7 3-3 3 3-3 3"></path>
+              </svg>
+              <svg *ngSwitchCase="'logistics'" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 17h4V5H2v12h3"></path>
+                <path d="M14 9h4l3 3v5h-3"></path>
+                <circle cx="7.5" cy="17.5" r="2.5"></circle>
+                <circle cx="17.5" cy="17.5" r="2.5"></circle>
+              </svg>
+              <svg *ngSwitchCase="'packaging'" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m21 16-9 5-9-5V8l9-5 9 5z"></path>
+                <path d="m3 8 9 5 9-5"></path>
+                <path d="M12 13v8"></path>
+              </svg>
+              <svg *ngSwitchCase="'tech'" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                <line x1="8" x2="16" y1="21" y2="21"></line>
+                <line x1="12" x2="12" y1="17" y2="21"></line>
+              </svg>
+              <svg *ngSwitchCase="'services'" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18"></path>
+                <path d="M12 17V3"></path>
+                <path d="M7 7h10"></path>
+                <path d="M5 17h14"></path>
+              </svg>
+              <svg *ngSwitchCase="'customs'" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7h13l4 4v9H3z"></path>
+                <path d="M3 7V5a2 2 0 0 1 2-2h9"></path>
+                <path d="M7 13h6"></path>
+              </svg>
+            </ng-container>
+          </div>
+          <h3 class="category-title">{{ category.title }}</h3>
+        </div>
+        <ul class="category-list">
+          <li *ngFor="let company of category.companies">
+            <span class="category-item">{{ company }}</span>
+          </li>
+        </ul>
       </div>
-      
-      <app-loading *ngIf="loading" message="Carregando clientes..."></app-loading>
-      <div *ngIf="error" class="alert alert-danger mb-4" role="alert">
-        {{ error }}
-      </div>
-      
-      <app-carousel 
-        *ngIf="!loading && !error && carouselItems.length > 0"
-        [items]="carouselItems"
-        [autoPlay]="true"
-        [autoPlayInterval]="1800"
-        [showControls]="false">
-      </app-carousel>
-      
-      <div *ngIf="!loading && !error && carouselItems.length === 0" class="text-center text-muted py-5">
-        <p>Nenhum cliente encontrado.</p>
-      </div>
-      
     </div>
   </div>
-</div>
+</section>

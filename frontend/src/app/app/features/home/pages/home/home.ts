@@ -31,6 +31,24 @@ import { Plano } from '../../../../../core/models/plano.model';
         padding-top: 90px;
         padding-bottom: 60px;
       }
+
+      .hero-content {
+        text-align: center;
+        margin: 0 auto;
+      }
+
+      .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .services-section {
+        margin-top: 3.5rem;
+      }
     }
     
     .hero-background-image {
@@ -40,7 +58,7 @@ import { Plano } from '../../../../../core/models/plano.model';
       right: 0;
       bottom: 0;
       z-index: 1;
-      background-image: url('/Empresa.png');
+      background-image: url('/imagem - empresa.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -76,22 +94,228 @@ import { Plano } from '../../../../../core/models/plano.model';
     .services-section {
       margin-top: 5rem;
     }
+
+    .services-shell {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #e9ecef;
+      border-radius: 32px;
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    }
+
+    .services-shell::before,
+    .services-shell::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 32px;
+      background: radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.05), transparent 65%);
+      pointer-events: none;
+    }
+
+    .services-shell::after {
+      background: radial-gradient(circle at 80% 0%, rgba(102, 126, 234, 0.05), transparent 55%);
+    }
+
+    .services-preview {
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 28px;
+      border: 1px solid rgba(233, 236, 239, 0.5);
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .preview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #6c757d;
+      font-size: 0.9rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .preview-dots span {
+      display: inline-flex;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #dee2e6;
+      margin-left: 0.35rem;
+    }
+
+    .preview-body {
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+    }
+
+    .preview-card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      padding: 1.5rem;
+      border: 1px solid rgba(233, 236, 239, 0.5);
+    }
+
+    .preview-card ul {
+      margin: 0;
+      padding-left: 1rem;
+      color: #6c757d;
+    }
+
+    .preview-card h4 {
+      color: #1a1a1a;
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .preview-label {
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 0.75rem;
+      color: #6c757d;
+      margin-bottom: 0.25rem;
+    }
+
+    .preview-board {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      padding: 1.5rem;
+      border: 1px dashed rgba(222, 226, 230, 0.5);
+    }
+
+    .tag {
+      display: inline-flex;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(102, 126, 234, 0.1);
+      color: #667eea;
+      font-size: 0.85rem;
+      margin-right: 0.5rem;
+    }
+
+    .preview-graph {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-top: 1rem;
+      align-items: end;
+      height: 120px;
+    }
+
+    .preview-graph .bar {
+      background: linear-gradient(180deg, #667eea 0%, #1e40af 100%);
+      border-radius: 12px 12px 4px 4px;
+      animation: pulse 4s ease-in-out infinite;
+    }
+
+    .bar-1 { height: 40%; animation-delay: 0.2s; }
+    .bar-2 { height: 60%; animation-delay: 0.4s; }
+    .bar-3 { height: 80%; animation-delay: 0.6s; }
+    .bar-4 { height: 55%; animation-delay: 0.8s; }
+
+    .service-item {
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding: 1.5rem 1.75rem;
+      background: #ffffff;
+      border: 1px solid rgba(222, 226, 230, 0.8);
+      border-radius: 18px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, rgba(102, 126, 234, 0.6), rgba(37, 99, 235, 0.6));
+      opacity: 0.6;
+    }
+
+    .service-item:hover {
+      transform: translateY(-4px);
+      border-color: rgba(102, 126, 234, 0.35);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+    }
+
+    .service-icon-wrapper {
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      background: rgba(102, 126, 234, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #667eea;
+      box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    }
+
+    .service-item:hover .service-icon {
+      transform: translateY(-2px);
+      background: rgba(102, 126, 234, 0.18);
+      box-shadow: 0 8px 18px rgba(102, 126, 234, 0.2);
+    }
+
+    .service-icon svg {
+      position: relative;
+      z-index: 1;
+      stroke-width: 2.2;
+    }
+
+    .service-content {
+      flex: 1;
+      padding-top: 0.25rem;
+    }
+
+    .service-description {
+      color: #6c757d;
+      margin-bottom: 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      font-weight: 400;
+    }
     
     .hero-content {
       animation: fadeInUp 0.8s ease-out;
       background: transparent;
       padding: 0;
-      max-width: 800px;
+      max-width: 680px;
+      margin-left: 0;
+      margin-right: auto;
+      padding-right: 0;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
     }
+
+    
     
     .hero-title {
       font-size: 2.5rem;
       font-weight: 700;
       color: #ffffff;
       line-height: 1.2;
-      margin-bottom: 1rem;
+      margin-bottom: 0;
       letter-spacing: -0.02em;
       text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      text-wrap: balance;
     }
 
     .hero-title-brand {
@@ -124,7 +348,7 @@ import { Plano } from '../../../../../core/models/plano.model';
       font-size: 1rem;
       color: #ffffff;
       line-height: 1.6;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0;
       max-width: 480px;
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
@@ -208,6 +432,19 @@ import { Plano } from '../../../../../core/models/plano.model';
       .preview-pill {
         padding: 0.5rem 1rem;
       }
+
+      .hero-section {
+        padding-top: 80px;
+        padding-bottom: 50px;
+      }
+
+      .hero-title {
+        text-align: center;
+      }
+
+      .hero-subtitle {
+        max-width: 100%;
+      }
     }
     
     .hero-buttons {
@@ -215,6 +452,8 @@ import { Plano } from '../../../../../core/models/plano.model';
       flex-wrap: wrap;
       align-items: center;
       gap: 1.5rem;
+      justify-content: flex-start;
+      margin-top: 0.25rem;
     }
     
     .hero-buttons .btn {
@@ -296,19 +535,6 @@ import { Plano } from '../../../../../core/models/plano.model';
         padding: 0.625rem 1.25rem;
         font-size: 0.875rem;
       }
-      
-      /* Manter imagem ao lado no mobile */
-      .hero-section .row {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-      
-      .hero-section .col-12 {
-        flex: 0 0 50%;
-        max-width: 50%;
-      }
-      
     }
     
     .section-pill {
@@ -325,35 +551,12 @@ import { Plano } from '../../../../../core/models/plano.model';
       margin-bottom: 1.25rem;
     }
     
-    .services-shell {
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid #e9ecef;
-      border-radius: 32px;
-      padding: 2.5rem;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    }
-    
-    .services-shell::before,
-    .services-shell::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border-radius: 32px;
-      background: radial-gradient(circle at 20% 20%, rgba(102, 126, 234, 0.05), transparent 65%);
-      pointer-events: none;
-    }
-    
-    .services-shell::after {
-      background: radial-gradient(circle at 80% 0%, rgba(102, 126, 234, 0.05), transparent 55%);
+    .services-header {
+      max-width: 760px;
+      margin: 0 auto 2.5rem;
     }
 
     @media (max-width: 768px) {
-      .services-shell {
-        padding: 1.75rem;
-      }
-      
       .services-title {
         font-size: 1.75rem;
       }
@@ -364,10 +567,6 @@ import { Plano } from '../../../../../core/models/plano.model';
     }
     
     @media (max-width: 576px) {
-      .services-shell {
-        padding: 1.5rem;
-      }
-      
       .services-title {
         font-size: 1.5rem;
       }
@@ -375,34 +574,45 @@ import { Plano } from '../../../../../core/models/plano.model';
       .services-description {
         font-size: 0.85rem;
       }
-      
-      /* Manter imagem ao lado no mobile */
-      .services-shell .row {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .services-shell {
+        padding: 1.75rem;
       }
-      
-      .services-shell .col-12 {
-        flex: 0 0 50%;
-        max-width: 50%;
-        padding: 0.5rem;
+    }
+
+    @media (max-width: 576px) {
+      .services-shell {
+        padding: 1.5rem;
+        border-radius: 22px;
       }
-      
+
       .services-preview {
         padding: 1rem;
+        border-radius: 20px;
+        margin-bottom: 1rem;
       }
-      
-      .preview-header {
-        font-size: 0.75rem;
-      }
-      
+
       .preview-card h4 {
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
-      
+
       .preview-card ul {
         font-size: 0.8rem;
+      }
+
+      .service-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1.25rem;
+        gap: 1rem;
+      }
+
+      .service-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
       }
     }
     
@@ -411,139 +621,78 @@ import { Plano } from '../../../../../core/models/plano.model';
       font-size: 2rem;
       line-height: 1.3;
       margin-bottom: 0.875rem;
+      text-align: center;
     }
     
     .services-description {
       color: #6c757d;
       font-size: 0.95rem;
       margin-bottom: 1.25rem;
+      text-align: center;
     }
     
-    .services-list {
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .service-card {
+      background: #ffffff;
+      border: 1px solid rgba(222, 226, 230, 0.9);
+      border-radius: 18px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
+      gap: 0.75rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
     
-    .service-item {
-      display: flex;
-      gap: 1.5rem;
-      align-items: flex-start;
-      padding: 1.75rem;
-      background: rgba(255, 255, 255, 0.6);
-      border: 1.5px solid rgba(233, 236, 239, 0.4);
-      border-radius: 20px;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-    
-    .service-item::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 4px;
-      height: 100%;
-      background: linear-gradient(180deg, #667eea 0%, #1e40af 100%);
-      transform: scaleY(0);
-      transform-origin: top;
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .service-item:hover {
-      transform: translateX(8px);
-      background: rgba(255, 255, 255, 0.95);
-      border-color: rgba(102, 126, 234, 0.4);
-      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.12);
-    }
-    
-    .service-item:hover::before {
-      transform: scaleY(1);
-    }
-    
-    .service-icon-wrapper {
-      flex-shrink: 0;
-      position: relative;
+    .service-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(102, 126, 234, 0.35);
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
     }
     
     .service-icon {
-      width: 72px;
-      height: 72px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, #667eea 0%, #1e40af 100%);
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: rgba(102, 126, 234, 0.12);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #ffffff;
-      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .service-icon::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .service-item:hover .service-icon {
-      transform: scale(1.08) rotate(-3deg);
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-    }
-    
-    .service-item:hover .service-icon::after {
-      opacity: 1;
+      color: #667eea;
+      box-shadow: inset 0 0 0 1px rgba(102, 126, 234, 0.2);
     }
     
     .service-icon svg {
-      position: relative;
-      z-index: 1;
-      stroke-width: 2.5;
-    }
-    
-    .service-content {
-      flex: 1;
-      padding-top: 0.25rem;
+      stroke-width: 2.2;
     }
     
     .service-title {
       color: #1a1a1a;
-      margin-bottom: 0.625rem;
-      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.05rem;
       font-weight: 700;
       line-height: 1.3;
       letter-spacing: -0.01em;
-      transition: color 0.3s ease;
     }
     
-    .service-item:hover .service-title {
-      color: #667eea;
-    }
-    
-    .service-description {
+    .service-list {
+      margin: 0;
+      padding-left: 1.1rem;
       color: #6c757d;
-      margin-bottom: 0;
-      font-size: 0.95rem;
-      line-height: 1.65;
-      font-weight: 400;
+      font-size: 0.9rem;
+      line-height: 1.6;
     }
     
     @media (max-width: 768px) {
-      .service-item {
-        padding: 1.25rem;
-        gap: 1.25rem;
-      }
-      
       .service-icon {
-        width: 60px;
-        height: 60px;
-        border-radius: 16px;
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
       }
       
       .service-icon svg {
@@ -552,116 +701,113 @@ import { Plano } from '../../../../../core/models/plano.model';
       }
       
       .service-title {
-        font-size: 1.05rem;
+        font-size: 1rem;
       }
       
-      .service-description {
-        font-size: 0.9rem;
+      .service-list {
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .services-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
     
-    .services-preview {
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 28px;
-      border: 1px solid rgba(233, 236, 239, 0.5);
-      padding: 2rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-      position: relative;
-      overflow: hidden;
+    @media (max-width: 576px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
     }
-    
-    .preview-header {
+
+    .services-cta {
+      margin-top: 2.75rem;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: #6c757d;
-      font-size: 0.9rem;
-      margin-bottom: 1.75rem;
-    }
-    
-    .preview-dots span {
-      display: inline-flex;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #dee2e6;
-      margin-left: 0.35rem;
-    }
-    
-    .preview-body {
-      display: flex;
-      gap: 1rem;
       flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
     }
-    
-    .preview-card {
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 20px;
-      padding: 1.5rem;
-      border: 1px solid rgba(233, 236, 239, 0.5);
+
+    .services-cta-marker {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
     }
-    
-    .preview-card ul {
-      margin: 0;
-      padding-left: 1rem;
-      color: #6c757d;
+
+    .services-cta-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #667eea;
+      box-shadow: 0 4px 10px rgba(102, 126, 234, 0.35);
     }
-    
-    .preview-card h4 {
-      color: #1a1a1a;
-      font-size: 1.4rem;
-      margin-bottom: 0.75rem;
-    }
-    
-    .preview-label {
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-size: 0.75rem;
-      color: #6c757d;
-      margin-bottom: 0.25rem;
-    }
-    
-    .preview-board {
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 20px;
-      padding: 1.5rem;
-      border: 1px dashed rgba(222, 226, 230, 0.5);
-    }
-    
-    .tag {
-      display: inline-flex;
-      padding: 0.35rem 0.9rem;
+
+    .services-cta-line {
+      width: 2px;
+      height: 22px;
       border-radius: 999px;
-      background: rgba(102, 126, 234, 0.1);
-      color: #667eea;
-      font-size: 0.85rem;
-      margin-right: 0.5rem;
+      background: rgba(102, 126, 234, 0.65);
     }
-    
-    .preview-graph {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+
+    .services-cta-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin: 0;
+    }
+
+    .services-cta-btn {
+      display: inline-flex;
+      align-items: center;
       gap: 0.75rem;
-      margin-top: 1rem;
-      align-items: end;
-      height: 120px;
+      padding: 0.7rem 1.6rem;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #0d1b2a, #1e40af);
+      color: #ffffff;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 10px 20px rgba(30, 64, 175, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .services-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 26px rgba(30, 64, 175, 0.32);
+      color: #ffffff;
+    }
+
+    .services-cta-btn-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      font-size: 1rem;
+    }
+
+    @media (max-width: 576px) {
+      .services-cta-title {
+        font-size: 1.05rem;
+      }
+
+      .services-cta-btn {
+        width: 100%;
+        justify-content: center;
+      }
     }
     
-    .preview-graph .bar {
-      background: linear-gradient(180deg, #667eea 0%, #1e40af 100%);
-      border-radius: 12px 12px 4px 4px;
-      animation: pulse 4s ease-in-out infinite;
-    }
     
-    .bar-1 { height: 40%; animation-delay: 0.2s; }
-    .bar-2 { height: 60%; animation-delay: 0.4s; }
-    .bar-3 { height: 80%; animation-delay: 0.6s; }
-    .bar-4 { height: 55%; animation-delay: 0.8s; }
     
     .planos-section {
       margin-top: 4.5rem;
       padding-top: 5rem;
-      background: transparent;
+      background: rgba(227, 242, 253, 0.7);
       border-radius: 24px;
     }
     
@@ -684,6 +830,19 @@ import { Plano } from '../../../../../core/models/plano.model';
       .planos-section {
         margin-top: 3rem;
         padding-top: 3.5rem;
+      }
+
+      .plano-card .card-body {
+        padding: 1.5rem !important;
+      }
+
+      .plano-card .card-title {
+        font-size: 1.25rem;
+      }
+
+      .plano-card .btn {
+        font-size: 0.9rem;
+        padding: 0.75rem 1rem;
       }
     }
     
@@ -972,6 +1131,7 @@ import { Plano } from '../../../../../core/models/plano.model';
       
       .diferencial-card {
         padding: 1.25rem;
+        border-radius: 14px;
       }
       
       .diferencial-icon {

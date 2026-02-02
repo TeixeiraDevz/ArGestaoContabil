@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../../environments/environment';
+import { APP_CONFIG } from '../../core/config/app-config';
 
 @Injectable({
   providedIn: 'root'
 })
 export abstract class BaseRepository {
-  protected readonly apiUrl = environment.apiUrl;
+  protected readonly apiUrl = inject(APP_CONFIG).apiUrl;
 
   constructor(protected http: HttpClient) { }
 

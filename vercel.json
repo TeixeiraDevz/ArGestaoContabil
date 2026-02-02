@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "installCommand": "cd frontend && npm ci",
+  "buildCommand": "cd frontend && npm run build:vercel",
+  "outputDirectory": "frontend/dist/ar-gestao-frontend/browser",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
+
