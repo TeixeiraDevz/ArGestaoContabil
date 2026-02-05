@@ -1,0 +1,576 @@
+# Planos de Desenvolvimento - AR Contabilidade
+
+## 📋 Plano: Front-end Angular (Bootstrap) para AR Gestão Contábil e Financeira
+
+### Escopo
+
+- Criar app Angular com TypeScript, UI com Bootstrap, rotas: Home, Clientes, Outsourcing
+- Arquitetura limpa (módulos `core`, `shared`, `features/*`, `infra`), princípios SOLID
+- Assistente de IA (widget flutuante) com serviço stub inicialmente; posterior integração ao back Spring Boot
+- Repositório do front separado, pronto para CI/CD e integração futura
+- Conteúdo inicial baseado no site antigo para referências de seções e copy básica ([site antigo](https://arcontabilidade-am.com.br/))
+
+### Stack
+
+- Angular 18+ (standalone desativado; usaremos NgModules para modularidade)
+- Bootstrap 5.x + `@ng-bootstrap/ng-bootstrap`
+- TypeScript estrito, ESLint + Prettier
+
+### Estrutura de pastas
+
+- `src/app/core/` (serviços base, guards, interceptors, tokens, config)
+- `src/app/shared/` (componentes, pipes, directives reutilizáveis)
+- `src/app/features/`
+  - `home/`
+  - `clientes/`
+  - `equipe/`
+  - `auth/` (login)
+  - `assistente/` (widget e chat)
+- `src/app/infra/` (adapters HTTP, mapeadores, gateways)
+- `src/app/routes/app-routing.module.ts`
+- `src/environments/` (`environment.ts`)
+- `src/assets/` (logo, cores, favicon)
+
+### Rotas iniciais
+
+- `/` → Home
+- `/clientes` → Informações para clientes (PF/PJ visão geral, links úteis)
+- `/equipe` → Equipe/Empresa (sobre, missão, valores, contatos)
+- `/login` → Login (stub de autenticação; integração futura)
+
+### UI/Branding moderno
+
+- Hero na Home com título forte, subtítulo e CTA (Contato/WhatsApp)
+- Cards para serviços principais (Contábil, Fiscal, RH) com ícones
+- Seção "Por que a AR Gestão?" com métricas/selos (anos de mercado, clientes)
+- Navbar sticky, offcanvas em mobile; footer limpo com mapa/link para contato
+- Tema Bootstrap com cores corporativas, tipografia moderna (Inter/Roboto)
+- Dark mode opcional (toggle simples com `data-bs-theme`)
+
+### Assistente de IA (fase 1)
+
+- Botão flutuante (FAB) abre um painel de chat
+- Serviço `AssistenteService` com stub (FAQs, links, encaminhar para contato)
+- Depois, gateway HTTP para back-end (`/ai/chat`)
+
+### Camadas e Clean Architecture
+
+- `core`: contratos (ports) e modelos domínio: `Cliente`, `TipoPessoa`, `Usuario`
+- `infra`: adapters HTTP implementando ports (`ClienteGateway`, `AuthGateway`)
+- `features`: casos de uso por feature
+- Dependências unidirecionais: features → core/shared; infra implementa ports de core
+
+### Serviços e Interceptadores
+
+- `AuthInterceptor` (injeta token quando existir)
+- `HttpErrorInterceptor` (tratamento genérico de erros)
+- `ApiConfigToken` para `API_BASE_URL` (de `environment`)
+
+### Acessibilidade e SEO
+
+- Metatags base (title, description), `og:*` e `twitter:*`
+- Roles ARIA, foco gerenciado no widget do assistente
+
+### Arquivos-chave
+
+- `angular.json`, `package.json` com Bootstrap e ng-bootstrap
+- `src/styles.scss` (import Bootstrap + overrides + tema)
+- `src/app/app.module.ts`, `src/app/routes/app-routing.module.ts`
+- `src/app/layout/header`, `src/app/layout/footer`
+- `src/app/features/{home,clientes,equipe,auth}/`
+- `src/app/features/assistente/assistant-widget.component.*`
+- `src/app/core/models/*.ts`, `src/app/core/ports/*.ts`
+- `src/app/infra/http/*.ts` (gateways)
+- `src/app/core/interceptors/*.ts`
+- `src/environments/environment*.ts`
+
+### Passos de build iniciais
+
+1. `npm install -g @angular/cli`
+2. `ng new ar-gestao-frontend --routing --style=scss`
+3. Adicionar Bootstrap: `npm i bootstrap @popperjs/core @ng-bootstrap/ng-bootstrap`
+4. Importar Bootstrap em `styles.scss`; configurar tema/corpo
+5. Criar `core`, `shared`, `infra`, `features/*` e rotas lazy
+6. Implementar layout (navbar, footer); Home com hero + cards
+7. Adicionar assistente (FAB + painel) com serviço stub
+8. ESLint/Prettier e scripts NPM (`lint`, `format`)
+
+### Integração futura com back Spring Boot
+
+- `AuthGateway` → `/auth/login`
+- `ClienteGateway` → `/clientes` (PF/PJ)
+- `AssistenteGateway` → `/ai/chat`
+- Base URL por ambiente via `environment`
+
+---
+
+## 🔗 Plano: Repositórios para Comunicação Frontend-Backend
+
+### Objetivo
+
+Implementar a camada de repositórios no Angular para comunicação com o backend (Spring Boot na porta 8080), seguindo o padrão com BaseRepository, e reorganizar a documentação do projeto.
+
+### Arquitetura da Solução
+
+#### 1. Configuração de Ambiente
+Criar arquivo de environment para gerenciar URL:
+- `frontend/src/environments/environment.ts` - desenvolvimento (http://localhost:8080)
+
+#### 2. Camada de Repositórios (`frontend/src/app/infra/repository/`)
+
+**BaseRepository** (classe abstrata):
+- Injetar `HttpClient` do Angular
+- Propriedade `apiUrl` protegida (do environment)
+- Método `getAuthHeaders()` para incluir token JWT do localStorage
+- Métodos auxiliares para requisições HTTP
+
+**Repositórios Específicos** (estendem BaseRepository):
+- `auth.repository.ts` - login, logout, validação de token
+- `cliente.repository.ts` - CRUD de clientes
+- `equipe.repository.ts` - operações de equipe
+- `assistente.repository.ts` - comunicação com IA modelo gemini
+
+#### 3. Models/DTOs (`frontend/src/app/core/models/`)
+Criar interfaces TypeScript para:
+- `auth.model.ts` - LoginRequest, LoginResponse, Usuario
+- `cliente.model.ts` - Cliente, ClienteDTO
+- `equipe.model.ts` - Membro, EquipeDTO
+- `assistente.model.ts` - ChatMessage, ChatResponse
+
+#### 4. Configuração do App
+- Adicionar `provideHttpClient()` no `app.config.ts`
+
+### Estrutura de Arquivos
+
+```
+frontend/src/
+├── environments/
+│   └── environment.ts           # apiUrl: 'http://localhost:8080'
+├── app/
+│   ├── core/
+│   │   └── models/
+│   │       ├── auth.model.ts
+│   │       ├── cliente.model.ts
+│   │       ├── equipe.model.ts
+│   │       └── assistente.model.ts
+│   └── infra/
+│       └── repository/
+│           ├── base.repository.ts
+│           ├── auth.repository.ts
+│           ├── cliente.repository.ts
+│           ├── equipe.repository.ts
+│           └── assistente.repository.ts
+```
+
+### Exemplo de Uso nos Services
+
+```typescript
+// No ClienteService
+constructor(private clienteRepo: ClienteRepository) {}
+
+listarClientes() {
+  return this.clienteRepo.getAll();
+}
+```
+
+### Preparação para Backend
+
+Quando criar o backend Spring Boot, configure CORS:
+```java
+@CrossOrigin(origins = "http://localhost:4200")
+```
+
+### Arquivos-Chave
+- `frontend/src/environments/environment.ts`
+- `frontend/src/app/app.config.ts` 
+- `frontend/src/app/infra/repository/base.repository.ts`
+- `frontend/src/app/core/models/*.model.ts`
+
+---
+
+## 🎨 Melhorias e Features Adicionais Implementadas
+
+### Componentes Compartilhados Criados
+
+#### CarouselComponent
+- **Localização**: `frontend/src/app/shared/components/carousel/`
+- **Funcionalidade**: Componente reutilizável para exibição de carrossel de imagens
+- **Uso**: Utilizado na página de Clientes para exibir logos
+- **Features**: Navegação automática, controles manuais, responsivo
+
+#### LoadingComponent
+- **Localização**: `frontend/src/app/shared/components/loading/`
+- **Funcionalidade**: Componente de loading/spinner reutilizável
+- **Uso**: Utilizado em páginas que fazem requisições HTTP (Clientes, Planos)
+- **Features**: Indicador visual de carregamento, fácil integração
+
+### Melhorias de UI/UX na Página Home
+
+#### Hero Section Avançada
+- Animação 3D de laptop flutuante com preview do site
+- Elementos decorativos com blur shapes animados
+- IntersectionObserver para otimização de performance
+- Animações suaves de entrada (fadeInUp)
+- Design responsivo completo
+
+#### Seção de Serviços
+- Cards interativos com hover effects
+- Micro-animações nos ícones
+- Gradiente animado nas bordas superiores
+- Transformações 3D no hover
+
+#### Seção de Planos Integrada
+- Cards de planos com destaque visual para plano recomendado
+- Animações de pulse para plano featured
+- Lista de benefícios com ícones animados
+- Hover effects com escala e sombra
+
+#### Seção de Diferenciais
+- Cards com animação de barra lateral
+- Ícones com rotação e escala no hover
+- Layout responsivo com grid adaptativo
+
+#### CTA Section
+- Gradiente de fundo com elementos decorativos animados
+- Botões com efeito ripple no hover
+- Animações de pulso nos elementos de fundo
+
+### Funcionalidades Avançadas na Página Clientes
+
+#### Sistema de Carousel
+- Carrossel de logos com navegação suave
+- Integração com LogoService para busca automática
+- Placeholder inteligente baseado em CNPJ
+
+#### Sistema de Fallback
+- Fallback automático para dados mockados quando backend não disponível
+- Tratamento de erros gracioso sem quebrar a UI
+- Loading states durante requisições
+
+### Funcionalidades na Página Planos
+
+#### Componente PlanoTable
+- **Localização**: `frontend/src/app/app/features/planos/components/plano-table/`
+- **Funcionalidade**: Tabela comparativa detalhada de planos
+- **Features**: 
+  - Comparação lado a lado de recursos
+  - Indicadores visuais de inclusão/não inclusão
+  - Layout responsivo
+
+#### Estrutura de Dados Completa
+- Modelo de dados detalhado com todos os recursos
+- Informações de público ideal, regimes atendidos
+- Canais de atendimento e relatórios gerenciais
+
+### Melhorias no Layout
+
+#### Header Inteligente
+- Navbar sticky com comportamento adaptativo
+- Esconde ao rolar para baixo, mostra ao rolar para cima
+- Transição suave entre estados transparente/opaco
+- Design glassmorphism com backdrop-filter
+- Responsivo com offcanvas em mobile
+
+#### Footer Completo
+- Links organizados por seções
+- Informações de contato com ícones
+- Copyright dinâmico com ano atual
+- Design com gradiente corporativo
+
+### Sistema de Rotas Expandido
+
+- `/` - Home (melhorada)
+- `/clientes` - Clientes (com carousel e logos)
+- `/planos` - Planos (página dedicada)
+- `/equipe` - Equipe (estrutura criada)
+- `/login` - Login genérico (estrutura criada)
+- `/login/pessoa-fisica` - Login PF (estrutura criada)
+- `/login/pessoa-juridica` - Login PJ (estrutura criada)
+
+### Arquitetura e Padrões
+
+#### Interceptors Implementados
+- **AuthInterceptor**: Injeta automaticamente token JWT em todas as requisições
+- **HttpErrorInterceptor**: Tratamento centralizado de erros HTTP
+  - Mensagens personalizadas por código de status
+  - Remoção automática de token em caso de 401
+  - Logging de erros para debug
+
+#### Padrão de Fallback
+- Todas as páginas que consomem APIs têm fallback para dados mockados
+- Permite desenvolvimento e demonstração mesmo sem backend
+- Facilita testes e desenvolvimento frontend-first
+
+---
+
+## ✅ Status de Implementação
+
+### Frontend Angular - Base
+- [x] Inicializar projeto Angular e configurar TypeScript estrito
+- [x] Instalar Bootstrap e @ng-bootstrap, configurar styles.scss
+- [x] Criar estrutura de pastas (core, shared, infra, features)
+- [x] Configurar AppRouting com lazy loading das features (standalone components)
+- [x] Implementar layout completo (navbar/header com animações, footer)
+- [x] Criar página Home completa com hero 3D, serviços, planos, diferenciais e CTA
+- [x] Criar página Clientes com carousel de logos e integração com LogoService
+- [x] Criar página Planos com componente de tabela comparativa
+- [x] Criar estrutura básica da página Equipe (conteúdo pendente)
+- [x] Criar estrutura básica das páginas de Login (formulários pendentes)
+- [x] Criar estrutura básica do widget de assistente de IA (funcionalidade pendente)
+
+### Repositórios Frontend-Backend
+- [x] Criar arquivo environment.ts com configuração de apiUrl para desenvolvimento
+- [x] Criar interfaces/models no core (auth, cliente, equipe, assistente)
+- [x] Implementar BaseRepository abstrato com HttpClient e getAuthHeaders
+- [x] Criar repositórios específicos (auth, cliente, equipe, assistente) estendendo BaseRepository
+- [x] Adicionar provideHttpClient no app.config.ts
+- [x] Criar plans.readme consolidando planos e remover pasta .cursor
+
+### Interceptors e Tratamento de Erros
+- [x] Adicionar AuthInterceptor e HttpErrorInterceptor
+- [x] Configurar interceptors no app.config.ts com provideHttpClient
+- [x] Implementar tratamento centralizado de erros HTTP (400, 401, 403, 404, 500)
+- [x] Implementar injeção automática de token JWT nas requisições
+- [x] Remover token do localStorage em caso de erro 401
+
+### Melhorias Implementadas (Além do Planejado)
+
+#### Componentes Compartilhados
+- [x] CarouselComponent (`shared/components/carousel/`) - Componente reutilizável para exibição de carrossel
+- [x] LoadingComponent (`shared/components/loading/`) - Componente de loading reutilizável
+
+#### Página Home - Melhorias Avançadas
+- [x] Hero section com animações 3D (laptop flutuante com preview do site)
+- [x] Seção de serviços com cards interativos e micro-animações
+- [x] Seção de planos integrada diretamente na home com cards destacados
+- [x] Seção de diferenciais com cards animados
+- [x] CTA section com gradiente e animações de fundo
+- [x] Animações de scroll e IntersectionObserver para performance
+
+#### Página Clientes - Funcionalidades Adicionais
+- [x] Carousel de logos de clientes com navegação
+- [x] Integração com LogoService para busca automática de logos
+- [x] Sistema de fallback para dados mockados quando backend não disponível
+- [x] Loading state durante carregamento de dados
+- [x] Tratamento de erros com fallback gracioso
+
+#### Página Planos - Componentes Avançados
+- [x] Hero section com badges e múltiplos CTAs
+- [x] Componente PlanoTable para comparação detalhada de planos
+- [x] Integração com PlanosService
+- [x] Sistema de fallback para dados mockados
+- [x] Estrutura de dados completa para recursos e benefícios
+
+#### Layout - Melhorias de UX
+- [x] Header com navbar sticky e animações de scroll inteligentes
+- [x] Navbar que esconde/mostra baseado na direção do scroll
+- [x] Footer completo com links, informações de contato e copyright dinâmico
+- [x] Design responsivo completo para mobile, tablet e desktop
+
+#### Rotas Adicionais
+- [x] Rota `/planos` - Página dedicada de planos
+- [x] Rota `/login/pessoa-fisica` - Login específico para PF
+- [x] Rota `/login/pessoa-juridica` - Login específico para PJ
+
+### Revisão de Código - Descobertas
+
+#### ✅ Pontos Positivos Identificados
+
+**Arquitetura e Padrões**
+- **Arquitetura Consistente**: Services seguem padrão correto usando Repositories (não acessam HTTP diretamente)
+- **Separação de Responsabilidades**: Camadas bem definidas (Service → Repository → HTTP)
+- **Padrão Repository**: BaseRepository implementado corretamente com métodos genéricos (get, post, put, delete)
+- **Tratamento de Erros**: Fallback gracioso implementado em todas as páginas que consomem APIs
+
+**Implementações Avançadas**
+- **LogoService Sofisticado**: 
+  - Múltiplas fontes de logos (Clearbit API, BrasilAPI, Google Favicon)
+  - Lógica inteligente de extração de domínio
+  - Fallback em cascata quando uma fonte falha
+  - Suporte a busca por CNPJ e nome da empresa
+- **Formulários de Login Estruturados**: 
+  - Páginas login-pf e login-pj têm HTML completo e bem estruturado
+  - Formulários de login e cadastro separados
+  - Layout responsivo e acessível
+
+**Componentes e Features**
+- **CarouselComponent**: Implementação reutilizável com navegação
+- **LoadingComponent**: Componente de loading reutilizável
+- **PlanoTableComponent**: Tabela comparativa de planos bem estruturada
+
+#### ⚠️ Ajustes Necessários Identificados
+
+**1. Página Login Genérica (`/login`)**
+- **Status**: Apenas placeholder básico (`<p>login works!</p>`)
+- **Arquivo**: `frontend/src/app/app/features/auth/pages/login/login.html`
+- **Ação Recomendada**: 
+  - Opção A: Implementar página de escolha (PF ou PJ) com redirecionamento
+  - Opção B: Implementar conteúdo similar às páginas PF/PJ
+  - Opção C: Redirecionar automaticamente para `/login/pessoa-fisica`
+
+**2. Widget Assistente**
+- **Status**: HTML vazio, componente sem funcionalidade
+- **Arquivo**: `frontend/src/app/app/features/assistente/components/assistant-widget/assistant-widget.html`
+- **Ação Recomendada**: 
+  - Implementar estrutura HTML básica (botão FAB, painel de chat)
+  - Adicionar lógica de abertura/fechamento do widget
+  - Criar serviço stub inicial (conforme planejado)
+
+**3. Página Equipe**
+- **Status**: Apenas placeholder básico (`<p>equipe works!</p>`)
+- **Arquivo**: `frontend/src/app/app/features/equipe/pages/equipe/equipe.html`
+- **Ação Recomendada**: 
+  - Implementar seção "Sobre a empresa"
+  - Adicionar seção de missão, visão e valores
+  - Criar seção de equipe/membros (se aplicável)
+  - Adicionar informações de contato
+
+**4. Formulários de Login (PF/PJ) - Funcionalidade Pendente**
+- **Status**: HTML completo mas sem funcionalidade Angular
+- **Problemas Identificados**:
+  - Sem FormControls ou FormGroup (Reactive Forms)
+  - Sem validações de formulário
+  - Sem métodos de submit conectados ao AuthRepository
+  - Sem tratamento de erros e feedback visual
+  - Sem integração com AuthService
+- **Ação Recomendada**: 
+  - Implementar Reactive Forms com FormBuilder
+  - Adicionar validações (email, CPF/CNPJ, senha)
+  - Conectar submit aos métodos do AuthRepository
+  - Implementar tratamento de erros e loading states
+  - Adicionar feedback visual (mensagens de sucesso/erro)
+
+**5. LogoService - Melhorias Sugeridas**
+- **Status**: Funcional mas pode ser otimizado
+- **Sugestões**: 
+  - Adicionar cache de logos buscados (localStorage ou service cache)
+  - Implementar retry logic para requisições falhadas
+  - Adicionar timeout para requisições HTTP
+  - Considerar service worker para cache offline
+
+**6. Estrutura de Arquivos - Observações**
+- **Services bem organizados**: ClientesService, PlanosService seguem padrão correto
+- **Repositories completos**: Todos os métodos CRUD implementados
+- **Models bem definidos**: Interfaces TypeScript para todos os DTOs
+
+### Próximos Passos
+
+#### Prioridade Alta
+
+**Configuração de Qualidade de Código**
+- [ ] Configurar ESLint (Prettier já configurado no package.json)
+- [ ] Criar scripts NPM para `lint` e `format` no package.json
+- [ ] Configurar regras do ESLint compatíveis com Angular e TypeScript estrito
+
+**Páginas com Conteúdo Pendente**
+- [ ] **Página Equipe**: Implementar conteúdo completo (sobre, missão, valores, equipe)
+  - Arquivo: `frontend/src/app/app/features/equipe/pages/equipe/equipe.html`
+  - Status atual: Apenas placeholder
+  
+- [ ] **Página Login Genérica**: Implementar conteúdo ou redirecionamento
+  - Arquivo: `frontend/src/app/app/features/auth/pages/login/login.html`
+  - Status atual: Apenas placeholder
+  - Opções: Página de escolha PF/PJ ou redirecionamento automático
+
+**Funcionalidades Pendentes**
+- [ ] **Formulários de Login (PF/PJ)**: Implementar funcionalidade completa
+  - Adicionar Reactive Forms (FormBuilder, FormGroup, FormControl)
+  - Implementar validações (email, CPF/CNPJ formatado, senha forte)
+  - Conectar métodos de submit ao AuthRepository
+  - Adicionar tratamento de erros e feedback visual
+  - Implementar loading states durante requisições
+  - Arquivos: `login-pf.ts`, `login-pf.html`, `login-pj.ts`, `login-pj.html`
+
+- [ ] **Widget Assistente**: Implementar estrutura e funcionalidade básica
+  - Criar HTML do widget (botão FAB + painel de chat)
+  - Implementar lógica de abertura/fechamento
+  - Criar AssistenteService com stub inicial (FAQs, links úteis)
+  - Adicionar estilos e animações
+  - Arquivos: `assistant-widget.html`, `assistant-widget.ts`
+
+#### Prioridade Média
+
+**Testes**
+- [ ] Implementar testes unitários para repositórios (ClienteRepository, PlanosRepository, AuthRepository)
+- [ ] Implementar testes unitários para services (ClientesService, PlanosService)
+- [ ] Implementar testes unitários para componentes principais (Home, Clientes, Planos)
+- [ ] Adicionar testes de integração para fluxos críticos (login, listagem de clientes)
+
+**Otimizações**
+- [ ] Adicionar cache no LogoService para evitar requisições repetidas
+- [ ] Implementar retry logic em requisições HTTP críticas
+- [ ] Adicionar debounce em campos de busca (quando implementados)
+- [ ] Otimizar carregamento de imagens (lazy loading, placeholders)
+
+#### Prioridade Baixa (Backend)
+- [ ] Criar backend Spring Boot com endpoints correspondentes
+- [ ] Configurar CORS no backend
+- [ ] Implementar autenticação JWT no backend
+- [ ] Integrar endpoints reais substituindo dados mockados
+
+### Estado Atual dos Services e Repositories
+
+#### Services Implementados
+- ✅ **ClientesService** (`features/clientes/services/clientes.service.ts`)
+  - Métodos: listarClientes, obterClientePorId, criarCliente, atualizarCliente, removerCliente, buscarClientes
+  - Usa: ClienteRepository
+  - Status: Completo e funcional
+
+- ✅ **PlanosService** (`features/planos/services/planos.service.ts`)
+  - Métodos: listarPlanos, obterPlanoPorId, criarPlano, atualizarPlano, removerPlano, buscarPlanos
+  - Usa: PlanosRepository
+  - Status: Completo e funcional
+
+- ✅ **LogoService** (`features/clientes/services/logo.service.ts`)
+  - Métodos: buscarLogo, getLogoLocal, verificarImagemValida
+  - Integrações: Clearbit API, BrasilAPI, Google Favicon
+  - Status: Completo e avançado (pode ser otimizado com cache)
+
+- ⚠️ **AuthService** (não encontrado)
+  - Status: Não implementado
+  - Necessário para: Autenticação, login, logout, validação de token
+  - Ação: Criar service que usa AuthRepository
+
+#### Repositories Implementados
+- ✅ **BaseRepository** (`infra/repository/base.repository.ts`)
+  - Métodos protegidos: get, post, put, delete, getAuthHeaders
+  - Funcionalidades: Injeção automática de token, tratamento de headers
+  - Status: Completo e bem estruturado
+
+- ✅ **ClienteRepository** (`infra/repository/cliente.repository.ts`)
+  - Métodos: getAll, getById, create, update, remove, search
+  - Endpoints: `/clientes`, `/clientes/{id}`, `/clientes/search`
+  - Status: Completo
+
+- ✅ **PlanosRepository** (`infra/repository/plano.repository.ts`)
+  - Métodos: getAll, getById, create, update, remove, search
+  - Endpoints: `/planos`, `/planos/{id}`, `/planos/search`
+  - Status: Completo
+
+- ✅ **AuthRepository** (`infra/repository/auth.repository.ts`)
+  - Status: Verificar implementação (não revisado em detalhes)
+  
+- ✅ **EquipeRepository** (`infra/repository/equipe.repository.ts`)
+  - Status: Verificar implementação (não revisado em detalhes)
+  
+- ✅ **AssistenteRepository** (`infra/repository/assistente.repository.ts`)
+  - Status: Verificar implementação (não revisado em detalhes)
+
+### Observações Técnicas
+
+#### ApiConfigToken
+- O plano original mencionava `ApiConfigToken` para `API_BASE_URL`, porém não é necessário pois:
+  - Os interceptors funcionam diretamente com `HttpClient`
+  - O `environment.apiUrl` é acessado diretamente nos repositórios via `BaseRepository`
+  - A arquitetura atual é mais simples e eficiente
+
+#### Arquitetura Standalone vs NgModules
+- O projeto foi implementado usando componentes standalone do Angular (não NgModules)
+- Isso está alinhado com as melhores práticas do Angular moderno (18+)
+- A modularidade é mantida através da organização em features e lazy loading
+
+#### Padrão de Comunicação
+- **Services → Repositories → HTTP**: Arquitetura em camadas respeitada
+- **DTOs**: Comunicação entre camadas usa DTOs (ClienteDTO, PlanoDTO)
+- **Observables**: Uso correto de RxJS Observables para requisições assíncronas
+- **Error Handling**: Tratamento de erros implementado com fallback para dados mockados
