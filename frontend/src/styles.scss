@@ -53,11 +53,12 @@ html[data-bs-theme='dark'] {
   --color-gray: #6c757d;
   --color-gray-dark: #495057;
 
-  /* Background do site (azul claro) */
-  --site-bg: linear-gradient(180deg, #e3f2fd 0%, #e8f4fd 55%, #e3f2fd 100%);
-  --site-blob-1: radial-gradient(circle at 30% 20%, rgba(33, 150, 243, 0.18) 0%, transparent 55%);
-  --site-blob-2: radial-gradient(circle at 70% 65%, rgba(66, 165, 245, 0.15) 0%, transparent 60%);
-  --site-grid: radial-gradient(rgba(33, 150, 243, 0.08) 1px, transparent 1px);
+  /* Background do site (azul-índigo escuro - mesma cor do hero da landing) */
+  --site-bg: linear-gradient(180deg, #0f172a 0%, #1e1b4b 50%, #0f172a 100%);
+  --site-bg-solid: #0f172a;
+  --site-blob-1: radial-gradient(circle at 30% 20%, rgba(59, 130, 246, 0.06) 0%, transparent 55%);
+  --site-blob-2: radial-gradient(circle at 70% 65%, rgba(99, 102, 241, 0.05) 0%, transparent 60%);
+  --site-grid: radial-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px);
   
   /* Gradientes */
   --gradient-primary: linear-gradient(135deg, #2563eb 0%, #667eea 50%, #764ba2 100%);
@@ -84,6 +85,25 @@ html[data-bs-theme='dark'] {
 
   --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   --font-display: 'Playfair Display', 'Times New Roman', serif;
+}
+
+/* Navbar sobre hero azul claro (landing): igual à referência – transparente, logo e links brancos */
+body.page-landing .navbar.over-hero .container {
+  background: transparent !important;
+  backdrop-filter: none;
+  border-color: transparent;
+  box-shadow: none;
+}
+body.page-landing .navbar.over-hero .nav-link,
+body.page-landing .navbar.over-hero .nav-link:hover {
+  color: #ffffff !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+body.page-landing .navbar.over-hero .nav-link:hover {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+body.page-landing .navbar.over-hero .logo-container .brand-logo {
+  filter: brightness(0) invert(1);
 }
 
 /* Animações com Objetos de Escritório */
@@ -273,7 +293,7 @@ body {
   line-height: 1.6;
   background: var(--site-bg);
   position: relative;
-  color: #1a1a1a;
+  color: #e2e8f0;
 }
 
 /* Fundo decorativo suave (não interfere com clique) */
@@ -295,8 +315,8 @@ body::before {
 body::after {
   background-image: var(--site-grid);
   background-size: 34px 34px;
-  opacity: 0.7;
-  mask-image: radial-gradient(circle at 50% 15%, rgba(0, 0, 0, 0.9) 0%, transparent 62%);
+  opacity: 0.5;
+  mask-image: radial-gradient(circle at 50% 15%, rgba(0, 0, 0, 0.6) 0%, transparent 62%);
 }
 
 app-root {
@@ -310,12 +330,12 @@ app-root {
   width: 100%;
 }
 
-/* Tipografia melhorada */
+/* Tipografia melhorada (cor clara para fundo escuro da landing) */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.2;
-  color: var(--color-black);
+  color: #f1f5f9;
   margin-bottom: var(--spacing-sm);
 }
 

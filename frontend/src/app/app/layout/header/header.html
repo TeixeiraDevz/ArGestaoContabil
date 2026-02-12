@@ -45,8 +45,13 @@
         [class.show]="isNavOpen"
       >
         <div class="navbar-nav d-flex align-items-center gap-3">
-          <a class="nav-link" routerLink="/clientes" (click)="closeNavbar()">Clientes</a>
-          <a class="nav-link" routerLink="/planos" (click)="closeNavbar()">Planos</a>
+          <a class="nav-link" href="/#recursos" (click)="closeNavbar(); scrollToSection($event, 'recursos')">Funcionalidades</a>
+          <a class="nav-link" href="/#funcionalidades" (click)="closeNavbar(); scrollToSection($event, 'funcionalidades')">Sobre</a>
+          <a class="nav-link" href="/#contato" (click)="closeNavbar(); scrollToSection($event, 'contato')">Contato</a>
+          <a class="nav-link nav-cta btn-nav-cta" href="https://wa.me/559291359003" target="_blank" rel="noopener noreferrer" (click)="closeNavbar()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            Fale Conosco
+          </a>
         </div>
       </div>
     </div>

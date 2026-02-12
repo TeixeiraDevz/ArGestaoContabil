@@ -1,194 +1,190 @@
-<!-- Hero Section -->
-<section class="hero-section" data-has-background-image="true">
-  <!-- Imagem de fundo da empresa -->
-  <div class="hero-background-image"></div>
-  
-  <div class="container">
-    <div class="row hero-row align-items-center min-vh-75">
-      <div class="col-12 col-lg-8">
-        <!-- Conteúdo do hero -->
-        <div class="hero-content animate-fade-in-up">
-          <h1 class="hero-title">
-            <span class="hero-title-brand">AR Gestão Contábil e Financeira</span><br>
-            <span class="hero-title-main">Soluções completas</span><br>
-            <span class="hero-title-sub">para sua empresa crescer</span>
-          </h1>
-          <p class="hero-subtitle">
-            Gestão contábil completa com tecnologia e atendimento especializado.
-          </p>
-          <div class="hero-buttons">
-            <a routerLink="/planos" class="btn btn-primary btn-lg hero-btn-planos">Conheça nossos planos</a>
-          </div>
-        </div>
-      </div>
+<div class="landing-page">
+  <!-- Hero (imagem 1) -->
+  <section class="landing-hero hero-section" data-has-background-image="true">
+    <div class="landing-hero-bg">
+      <div class="landing-hero-pattern" aria-hidden="true"></div>
     </div>
-  </div>
-</section>
-
-<!-- Nossos Serviços -->
-<section class="services-section py-5">
-  <div class="container">
-    <div class="services-header text-center">
-      <h2 class="services-title">Atendimento especializado quando você precisar</h2>
-      <p class="services-description">
-        Unimos consultoria contábil com tecnologia para cuidar de impostos, folha de pagamento, integrações e relatórios estratégicos de forma eficiente e personalizada.
-      </p>
+    <div class="landing-hero-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none" class="landing-hero-wave-svg"><path fill="var(--site-bg-solid, #0f172a)" d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,58.7C960,64,1056,64,1152,58.7C1248,53,1344,43,1392,37.3L1440,32L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"/></svg>
     </div>
-    <div class="services-grid">
-      @for (servico of servicos; track servico.titulo) {
-        <div class="service-card">
-          <div class="service-icon">
-            @if (servico.icone === 'chart') {
-              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <line x1="12" x2="12" y1="20" y2="10"></line>
-                <line x1="18" x2="18" y1="20" y2="4"></line>
-                <line x1="6" x2="6" y1="20" y2="16"></line>
-              </svg>
-            } @else if (servico.icone === 'users') {
-              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-              </svg>
-            } @else if (servico.icone === 'file') {
-              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="16" x2="8" y1="13" y2="13"></line>
-                <line x1="16" x2="8" y1="17" y2="17"></line>
-                <polyline points="10 9 9 9 8 9"></polyline>
-              </svg>
-            } @else if (servico.icone === 'building') {
-              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 21h18"></path>
-                <path d="M5 21V7l8-4v18"></path>
-                <path d="M19 21V11l-6-4"></path>
-                <line x1="9" x2="9" y1="9" y2="9"></line>
-                <line x1="9" x2="9" y1="12" y2="12"></line>
-                <line x1="9" x2="9" y1="15" y2="15"></line>
-                <line x1="9" x2="9" y1="18" y2="18"></line>
-              </svg>
-            } @else if (servico.icone === 'link') {
-              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-              </svg>
-            } @else {
-              <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                <line x1="8" x2="16" y1="21" y2="21"></line>
-                <line x1="12" x2="12" y1="17" y2="21"></line>
-              </svg>
-            }
-          </div>
-          <h5 class="service-title">{{ servico.titulo }}</h5>
-          <ul class="service-list">
-            <li>{{ servico.descricao }}</li>
-          </ul>
-        </div>
-      }
-    </div>
-    <div class="services-cta">
-      <div class="services-cta-marker">
-        <span class="services-cta-dot"></span>
-        <span class="services-cta-line"></span>
-      </div>
-      <h3 class="services-cta-title">E muito mais para o seu negócio...</h3>
-      <a href="https://wa.me/559291359003" target="_blank" rel="noopener noreferrer" class="services-cta-btn">
-        Fale com um profissional
-        <span class="services-cta-btn-icon">→</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Planos -->
-<section id="planos" class="planos-section py-5">
-  <div class="container">
-    <div class="row mb-5">
-      <div class="col-12">
-        <h2 class="section-title">Planos personalizados</h2>
-        <p class="section-subtitle">
-          Temos soluções personalizadas para todos os momentos da sua empresa, desde novos negócios a grandes empresas
+    <div class="container position-relative">
+      <div class="landing-hero-content">
+        <p class="landing-hero-tagline">
+          <span class="landing-hero-tagline-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span>
+          Transforme Sua Contabilidade
         </p>
+        <h1 class="landing-hero-title">
+          Gestão Contábil<br><span class="landing-hero-title-accent">Simplificada</span><br>para Seu Negócio
+        </h1>
+        <p class="landing-hero-desc">
+          Otimize sua gestão financeira com nossa plataforma intuitiva. Relatórios automáticos, análise em tempo real e integração fácil para impulsionar o crescimento do seu negócio.
+        </p>
+        <div class="landing-hero-buttons">
+          <a href="https://wa.me/559291359003" target="_blank" rel="noopener noreferrer" class="btn btn-landing btn-landing-primary">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Comece Gratuitamente
+          </a>
+          <a href="#recursos" class="btn btn-landing btn-landing-outline">Saiba Mais</a>
+        </div>
+        <div class="landing-hero-pills">
+          <span class="landing-hero-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            Análise em Tempo Real
+          </span>
+          <span class="landing-hero-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            100% Seguro
+          </span>
+          <span class="landing-hero-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+            Integração Fácil
+          </span>
+        </div>
       </div>
     </div>
-    
-    <div class="row g-4">
-      @for (plano of planos; track plano.id) {
-        <div class="col-lg-4">
-          <div class="card plano-card h-100" [class.featured]="plano.id === '2'" routerLink="/planos" style="cursor: pointer;">
-            <div class="card-body p-4 d-flex flex-column">
-              <h3 class="card-title fw-bold mb-3">{{ plano.nome }}</h3>
-              <div class="mt-auto">
-                <a routerLink="/planos" class="btn btn-primary w-100">
-                  Ver detalhes do plano
-                </a>
-              </div>
+  </section>
+
+  <!-- Recursos Poderosos (imagem 2) -->
+  <section id="recursos" class="landing-section landing-recursos landing-section-cards">
+    <div class="landing-section-decor"></div>
+    <div class="container">
+      <h2 class="landing-section-title">Recursos <span class="landing-section-title-accent">Poderosos</span></h2>
+      <p class="landing-section-subtitle">Tudo que você precisa para gerenciar sua contabilidade com eficiência e profissionalismo</p>
+      <div class="landing-cards-grid landing-cards-4">
+        @for (item of recursosPoderosos; track item.titulo) {
+          <div class="landing-card" appCardTilt>
+            <div class="landing-card-icon">
+              @if (item.icone === 'clientes') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              } @else if (item.icone === 'analise') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              } @else if (item.icone === 'relatorios') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              } @else {
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+              }
             </div>
+            <h3 class="landing-card-title">{{ item.titulo }}</h3>
+            <p class="landing-card-desc">{{ item.descricao }}</p>
           </div>
-        </div>
-      }
+        }
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Diferenciais -->
-<section class="diferenciais-section py-5 bg-light">
-  <div class="container">
-    <div class="row mb-5">
-      <div class="col-12">
-        <h2 class="diferenciais-title">Nossos diferenciais</h2>
+  <!-- Funcionalidades Completas (imagem 4) -->
+  <section id="funcionalidades" class="landing-section landing-funcionalidades landing-section-cards">
+    <div class="landing-section-decor"></div>
+    <div class="container">
+      <h2 class="landing-section-title">Funcionalidades <span class="landing-section-title-accent">Completas</span></h2>
+      <p class="landing-section-subtitle">Uma solução completa para todas as suas necessidades contábeis</p>
+      <div class="landing-cards-grid landing-cards-6">
+        @for (item of funcionalidadesCompletas; track item.titulo) {
+          <div class="landing-card" appCardTilt>
+            <div class="landing-card-icon">
+              @if (item.icone === 'clientes') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              } @else if (item.icone === 'grafico') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              } @else if (item.icone === 'doc') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              } @else if (item.icone === 'despesa') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              } @else if (item.icone === 'calc') {
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10.01"/><line x1="12" y1="10" x2="12" y2="10.01"/><line x1="16" y1="10" x2="16" y2="10.01"/><line x1="8" y1="14" x2="8" y2="14.01"/><line x1="12" y1="14" x2="12" y2="14.01"/><line x1="16" y1="14" x2="16" y2="14.01"/><line x1="8" y1="18" x2="8" y2="18.01"/><line x1="12" y1="18" x2="12" y2="18.01"/><line x1="16" y1="18" x2="16" y2="18.01"/></svg>
+              } @else {
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              }
+            </div>
+            <h3 class="landing-card-title">{{ item.titulo }}</h3>
+            <p class="landing-card-desc">{{ item.descricao }}</p>
+          </div>
+        }
       </div>
     </div>
-    
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4">
-        <div class="diferencial-card">
-          <div class="diferencial-icon mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-            </svg>
-          </div>
-          <h5 class="diferencial-subtitle">Gestão estratégica</h5>
-          <p class="diferencial-text">
-            Mais do que números, ajudamos você a tomar decisões inteligentes com informações ágeis e seguras.
-          </p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="diferencial-card">
-          <div class="diferencial-icon mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-              <line x1="8" x2="16" y1="21" y2="21"></line>
-              <line x1="12" x2="12" y1="17" y2="21"></line>
-            </svg>
-          </div>
-          <h5 class="diferencial-subtitle">Tecnologia</h5>
-          <p class="diferencial-text">
-            Usamos tecnologia de ponta para otimizar processos e oferecer soluções eficientes.
-          </p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-4">
-        <div class="diferencial-card">
-          <div class="diferencial-icon mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-            </svg>
-          </div>
-          <h5 class="diferencial-subtitle">Atendimento diferenciado</h5>
-          <p class="diferencial-text">
-            Entendemos as dificuldades operacionais do seu negócio com uma equipe de especialistas.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
+  <!-- Segmentos Atendidos / Empresas por área -->
+  <section id="clientes" class="landing-section landing-clientes">
+    <div class="container">
+      <div class="landing-clientes-header">
+        <p class="landing-segmentos-pill">Segmentos Atendidos</p>
+        <h2 class="landing-section-title">Empresas atendidas <span class="landing-section-title-accent">por área</span></h2>
+        <p class="landing-section-subtitle">Organizamos nossos clientes por segmento para facilitar a visualização das áreas em que atuamos.</p>
+      </div>
+      <div class="landing-cards-grid landing-cards-segmentos">
+        @for (seg of segmentosAtendidos; track seg.titulo) {
+          <div class="landing-card landing-card-segmento" appCardTilt>
+            <div class="landing-card-icon">
+              @switch (seg.icone) {
+                @case ('construcao') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                }
+                @case ('transporte') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                }
+                @case ('industria') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                }
+                @case ('tecnologia') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                }
+                @case ('saude') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                }
+                @case ('despacho') {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                }
+                @default {
+                  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                }
+              }
+            </div>
+            <h3 class="landing-card-title">{{ seg.titulo }}</h3>
+            <ul class="landing-segmento-lista">
+              @for (nome of seg.clientes; track nome) {
+                <li>{{ nome }}</li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Planos (imagem 5) -->
+  <section id="planos" class="landing-section landing-planos">
+    <div class="container">
+      <h2 class="landing-section-title">Planos que <span class="landing-section-title-accent">Crescem com Você</span></h2>
+      <p class="landing-section-subtitle landing-planos-subtitle">Escolha a melhor opção para o seu momento. Transparência total, sem taxas escondidas.</p>
+      <div class="landing-planos-toggle-wrap">
+        <span class="landing-planos-toggle-label" [class.active]="!planoAnual">Mensal</span>
+        <button type="button" class="landing-planos-switch" [attr.aria-checked]="planoAnual" (click)="planoAnual = !planoAnual" aria-label="Mensal ou Anual">
+          <span class="landing-planos-switch-thumb" [class.annual]="planoAnual"></span>
+        </button>
+        <div class="landing-planos-toggle-right">
+          <span class="landing-planos-toggle-label" [class.active]="planoAnual">Anual</span>
+          <span class="landing-toggle-badge">-20% OFF</span>
+        </div>
+      </div>
+      <div class="landing-planos-grid">
+        @for (plano of planosExibicao; track plano.nome) {
+          <div class="landing-plano-card" [class.featured]="plano.destaque" appCardTilt>
+            @if (plano.destaque) {
+              <div class="landing-plano-badge">Mais Popular</div>
+            }
+            <h3 class="landing-plano-nome">{{ plano.nome }}</h3>
+            <p class="landing-plano-desc">{{ plano.descricao }}</p>
+            <p class="landing-plano-preco"><span class="landing-plano-valor">R$ {{ plano.valor }}</span> <span class="landing-plano-mes">/mês</span></p>
+            <ul class="landing-plano-lista">
+              @for (beneficio of plano.beneficios; track beneficio) {
+                <li [class.featured-check]="plano.destaque"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg> {{ beneficio }}</li>
+              }
+            </ul>
+            <a href="https://wa.me/559291359003" target="_blank" rel="noopener noreferrer" class="btn btn-landing-plano" [class.btn-landing-plano-featured]="plano.destaque"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Saiba Mais</a>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+</div>

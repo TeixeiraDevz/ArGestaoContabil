@@ -1,13 +1,15 @@
 /* Variáveis compartilhadas entre CTA e Footer (herdam para os componentes filhos) */
 :host {
-  --cta-overlap: 8rem;        /* quanto o CTA sobe para invadir o footer */
+  --cta-overlap: 5.5rem;      /* quanto o CTA sobe para invadir o footer (menor = mais espaço visível) */
   --footer-bg-pull: 3rem;     /* quanto o fundo azul escuro sobe por trás do CTA */
+  --cta-footer-gap: 3.5rem;   /* espaço visível entre o card CTA e o conteúdo do footer */
 }
 
 @media (max-width: 991px) {
   :host {
     --cta-overlap: 4rem;
     --footer-bg-pull: 2.5rem;
+    --cta-footer-gap: 3rem;
   }
 }
 
@@ -15,6 +17,7 @@
   :host {
     --cta-overlap: 3.5rem;
     --footer-bg-pull: 2rem;
+    --cta-footer-gap: 2.5rem;
   }
 }
 
@@ -22,6 +25,7 @@
   :host {
     --cta-overlap: 2.5rem;
     --footer-bg-pull: 1.5rem;
+    --cta-footer-gap: 2rem;
   }
 }
 

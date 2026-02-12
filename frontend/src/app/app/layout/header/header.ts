@@ -146,6 +146,9 @@ import { filter } from 'rxjs/operators';
       mix-blend-mode: normal;
       filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
     }
+    :host-context(body.page-landing) .navbar.over-hero .logo-container .brand-logo {
+      filter: brightness(0) invert(1);
+    }
     
     .navbar-brand:hover .logo-container .brand-logo {
       transform: scale(1.03);
@@ -178,6 +181,30 @@ import { filter } from 'rxjs/operators';
     
     .navbar.over-hero .nav-link:hover {
       text-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+    }
+    
+    .nav-cta.btn-nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      background: #22c55e;
+      color: #fff !important;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      transition: all var(--transition-normal);
+      box-shadow: 0 4px 14px rgba(34, 197, 94, 0.4);
+    }
+    .nav-cta.btn-nav-cta:hover {
+      background: #16a34a;
+      color: #fff !important;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5);
+    }
+    .navbar.over-hero .nav-cta.btn-nav-cta {
+      color: #fff !important;
     }
     
     .dropdown {
@@ -499,12 +526,16 @@ export class Header implements OnInit, OnDestroy {
   
   constructor(private router: Router, private cdr: ChangeDetectorRef) {}
   
+  private isOnLandingPage(): boolean {
+    const url = this.router.url.split('?')[0];
+    return url === '/' || url === '/home' || url.startsWith('/#');
+  }
+  
   ngOnInit() {
     this.lastScrollY = window.scrollY;
     
-    // Verificar se está sobre a hero section com imagem de fundo
-    const heroSection = document.querySelector('.hero-section[data-has-background-image="true"]');
-    const isOverHero = heroSection && window.scrollY < (heroSection as HTMLElement).offsetHeight;
+    // Transparência na landing page inteira (hero ou qualquer seção)
+    const useTransparentStyle = this.isOnLandingPage();
     
     // No mobile, sempre iniciar com navbar escondida
     if (this.isMobileOrTablet()) {
@@ -514,7 +545,7 @@ export class Header implements OnInit, OnDestroy {
         this.navbarClass = 'navbar scrolling hidden';
       }
     } else {
-      this.navbarClass = 'navbar visible' + (isOverHero ? ' over-hero' : '');
+      this.navbarClass = 'navbar visible' + (useTransparentStyle ? ' over-hero' : '');
     }
     
     // Atualizar floating toggler após definir o estado inicial da navbar
@@ -525,12 +556,11 @@ export class Header implements OnInit, OnDestroy {
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe(() => {
         this.closeNavbar();
-        // Verificar novamente após navegação
+        // Manter transparência na landing page após navegação
         setTimeout(() => {
-          const heroSectionAfterNav = document.querySelector('.hero-section[data-has-background-image="true"]');
-          const isOverHeroAfterNav = heroSectionAfterNav && window.scrollY < (heroSectionAfterNav as HTMLElement).offsetHeight;
-          if (isOverHeroAfterNav && !this.isMobileOrTablet()) {
-            this.navbarClass = 'navbar visible over-hero';
+          if (this.isOnLandingPage() && !this.isMobileOrTablet()) {
+            const hasScrolling = window.scrollY >= 50;
+            this.navbarClass = 'navbar ' + (hasScrolling ? 'scrolling ' : '') + 'visible over-hero';
           }
         }, 100);
       });
@@ -539,12 +569,22 @@ export class Header implements OnInit, OnDestroy {
   ngOnDestroy() {
   }
   
+  scrollToSection(event: Event, sectionId: string): void {
+    const url = this.router.url;
+    if (url === '/' || url.startsWith('/#')) {
+      event.preventDefault();
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }
+
   closeNavbar(): void {
     this.isNavOpen = false;
 
     const scrollY = window.scrollY;
-    const heroSection = document.querySelector('.hero-section[data-has-background-image="true"]');
-    const isOverHero = heroSection && scrollY < (heroSection as HTMLElement).offsetHeight;
+    const useTransparentStyle = this.isOnLandingPage();
     
     if (this.isMobileOrTablet()) {
       // No mobile, sempre esconder quando fecha
@@ -554,11 +594,11 @@ export class Header implements OnInit, OnDestroy {
         this.navbarClass = 'navbar hidden';
       }
     } else {
-      // Desktop: manter estado baseado no scroll
+      // Desktop: manter transparência em toda a landing page
       if (scrollY >= 50) {
-        this.navbarClass = 'navbar scrolling visible' + (isOverHero ? ' over-hero' : '');
+        this.navbarClass = 'navbar scrolling visible' + (useTransparentStyle ? ' over-hero' : '');
       } else {
-        this.navbarClass = 'navbar visible' + (isOverHero ? ' over-hero' : '');
+        this.navbarClass = 'navbar visible' + (useTransparentStyle ? ' over-hero' : '');
       }
     }
 
@@ -593,13 +633,12 @@ export class Header implements OnInit, OnDestroy {
           this.navbarClass = 'navbar hidden';
         }
       } else {
-        // Desktop: manter estado baseado no scroll
-        const heroSection = document.querySelector('.hero-section[data-has-background-image="true"]');
-        const isOverHero = heroSection && scrollY < (heroSection as HTMLElement).offsetHeight;
+        // Desktop: manter transparência em toda a landing page
+        const useTransparentStyle = this.isOnLandingPage();
         if (scrollY >= 50) {
-          this.navbarClass = 'navbar scrolling visible' + (isOverHero ? ' over-hero' : '');
+          this.navbarClass = 'navbar scrolling visible' + (useTransparentStyle ? ' over-hero' : '');
         } else {
-          this.navbarClass = 'navbar visible' + (isOverHero ? ' over-hero' : '');
+          this.navbarClass = 'navbar visible' + (useTransparentStyle ? ' over-hero' : '');
         }
       }
     }
@@ -656,9 +695,8 @@ export class Header implements OnInit, OnDestroy {
     const scrollPercentage = (documentHeight - windowHeight > 0) ? (currentScrollY / (documentHeight - windowHeight)) * 100 : 0;
     const isNearFooter = scrollPercentage > 80; // Se está nos últimos 20% da página (próximo do footer)
     
-    // Verificar se está sobre a hero section com imagem de fundo
-    const heroSection = document.querySelector('.hero-section[data-has-background-image="true"]');
-    const isOverHero = heroSection && currentScrollY < (heroSection as HTMLElement).offsetHeight;
+    // Transparência mantida em toda a landing page
+    const useTransparentStyle = this.isOnLandingPage();
 
     // Mobile/tablet: comportamento especial
     if (this.isMobileOrTablet()) {
@@ -666,9 +704,9 @@ export class Header implements OnInit, OnDestroy {
       if (this.isNavOpen) {
         // Menu aberto: mostrar
         if (currentScrollY >= 50 || isNearFooter) {
-          this.navbarClass = 'navbar scrolling visible' + (isOverHero ? ' over-hero' : '');
+          this.navbarClass = 'navbar scrolling visible' + (useTransparentStyle ? ' over-hero' : '');
         } else {
-          this.navbarClass = 'navbar visible' + (isOverHero ? ' over-hero' : '');
+          this.navbarClass = 'navbar visible' + (useTransparentStyle ? ' over-hero' : '');
         }
       } else {
         // Menu fechado: sempre esconder
@@ -679,14 +717,14 @@ export class Header implements OnInit, OnDestroy {
         }
       }
     } else {
-      // Desktop: comportamento padrão
+      // Desktop: transparência em toda a landing page
       if (currentScrollY < 50) {
-        this.navbarClass = 'navbar visible' + (isOverHero ? ' over-hero' : '');
+        this.navbarClass = 'navbar visible' + (useTransparentStyle ? ' over-hero' : '');
       } else {
         if (scrollingDown) {
           this.navbarClass = 'navbar scrolling hidden';
         } else {
-          this.navbarClass = 'navbar scrolling visible' + (isOverHero ? ' over-hero' : '');
+          this.navbarClass = 'navbar scrolling visible' + (useTransparentStyle ? ' over-hero' : '');
         }
       }
     }

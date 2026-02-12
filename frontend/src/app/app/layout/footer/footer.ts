@@ -18,11 +18,11 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
     }
     
     .footer-content {
-      /* Fundo azul escuro do footer */
+      /* Mesmo fundo azul-índigo da página inteira */
       margin-top: 0;
       padding: 4.25rem 0 2.25rem;
-      padding-top: calc(var(--cta-overlap, 6rem) + 2.5rem);
-      background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 45%, #0d1b2a 100%);
+      padding-top: calc(var(--cta-overlap, 6rem) + var(--cta-footer-gap, 3.5rem));
+      background: var(--site-bg);
       position: relative;
       z-index: 1;
       overflow: hidden;
@@ -33,9 +33,9 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.08), transparent 35%),
-                  radial-gradient(circle at 80% 0%, rgba(255,255,255,0.06), transparent 40%),
-                  radial-gradient(circle at 50% 100%, rgba(255,255,255,0.05), transparent 35%);
+      background: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.04), transparent 35%),
+                  radial-gradient(circle at 80% 0%, rgba(255,255,255,0.03), transparent 40%),
+                  radial-gradient(circle at 50% 100%, rgba(255,255,255,0.02), transparent 35%);
       pointer-events: none;
       z-index: 0;
     }

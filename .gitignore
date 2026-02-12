@@ -1,0 +1,5 @@
+# Ferramentas/scripts fora do frontend (não usados no build)
+mcp/
+
+# Scripts de merge one-off (já removidos do repo)
+merge-feature-*.ps1
