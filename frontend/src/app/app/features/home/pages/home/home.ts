@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CardTiltDirective } from '../../../../../shared/directives/card-tilt.directive';
+import { ScrollRevealDirective } from '../../../../../shared/directives/scroll-reveal.directive';
 
 interface RecursoItem {
   titulo: string;
@@ -40,7 +41,7 @@ interface ServicoItem {
 
 @Component({
   selector: 'app-home',
-  imports: [CardTiltDirective],
+  imports: [CardTiltDirective, ScrollRevealDirective],
   templateUrl: './home.html',
   styles: [`
     .landing-page { background: var(--site-bg); min-height: 100vh; color: #e2e8f0; }
@@ -232,7 +233,22 @@ interface ServicoItem {
     .landing-card-inicial { font-size: 1.25rem; font-weight: 700; color: #f3d97b; }
     .landing-card-title { font-size: 1.15rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
     .landing-card-desc { color: #94a3b8; font-size: 0.9rem; line-height: 1.55; margin: 0; }
-    .landing-certificado-a1 { position: relative; overflow: hidden; }
+    .landing-certificado-a1 {
+      position: relative; overflow: hidden;
+      background: linear-gradient(160deg, #0f0a1e 0%, #1a1b3a 35%, #0f172a 70%, #0a0f1e 100%);
+    }
+    .landing-certificado-sparkles {
+      position: absolute; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        radial-gradient(2px 2px at 20px 30px, rgba(212, 175, 55, 0.4), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.25), transparent),
+        radial-gradient(2px 2px at 50px 160px, rgba(212, 175, 55, 0.35), transparent),
+        radial-gradient(2px 2px at 90px 40px, rgba(255, 255, 255, 0.2), transparent),
+        radial-gradient(2px 2px at 130px 80px, rgba(212, 175, 55, 0.3), transparent),
+        radial-gradient(2px 2px at 160px 120px, rgba(255, 255, 255, 0.2), transparent);
+      background-size: 200px 200px; background-repeat: repeat; opacity: 0.9;
+    }
+    .landing-certificado-a1 .container { position: relative; z-index: 1; }
     .landing-certificado-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 2.5rem;
     }
@@ -254,30 +270,59 @@ interface ServicoItem {
       background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2'%3E%3Cpath d='M21.801 10A10 10 0 1 1 17 3.335'/%3E%3Cpath d='m9 11 3 3L22 4'/%3E%3C/svg%3E") center/contain no-repeat;
     }
     .landing-certificado-devices {
-      position: relative; display: flex; align-items: flex-end; justify-content: center; gap: 1rem; min-height: 280px;
+      position: relative; display: flex; align-items: flex-end; justify-content: center; gap: 0; min-height: 300px;
     }
-    @keyframes certificado-float {
-      0%, 100% { transform: translateY(0) translateX(0); }
-      50% { transform: translateY(-12px) translateX(4px); }
+    .landing-certificado-phone {
+      position: relative; z-index: 2; display: flex; align-items: flex-end;
+      transform: rotate(-8deg); margin-right: -24px; margin-bottom: 0.5rem;
     }
-    @keyframes certificado-float-phone {
-      0%, 100% { transform: translateY(0) translateX(0); }
-      50% { transform: translateY(-8px) translateX(-3px); }
+    .landing-certificado-phone-screen {
+      width: 118px; padding: 0.5rem 0.5rem 0.75rem; border-radius: 20px;
+      background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+    }
+    .landing-certificado-phone-topbar {
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.6rem;
+    }
+    .landing-certificado-phone-logo { width: 24px; height: 24px; object-fit: contain; }
+    .landing-certificado-phone-menu {
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .landing-certificado-phone-menu span {
+      display: block; width: 14px; height: 2px; background: rgba(255,255,255,0.7); border-radius: 1px;
+    }
+    .landing-certificado-phone-shield {
+      display: flex; align-items: center; justify-content: center;
+      width: 52px; height: 52px; margin: 0 auto 0.5rem;
+      background: rgba(212, 175, 55, 0.12); border-radius: 50%; color: #d4af37;
+    }
+    .landing-certificado-laptop-wrap {
+      position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center;
+      transform: perspective(320px) rotateY(-6deg);
     }
     .landing-certificado-laptop {
-      position: relative; z-index: 2;
-      animation: certificado-float 5s ease-in-out infinite;
+      padding: 8px; border-radius: 10px 10px 0 0;
+      background: linear-gradient(180deg, #c0c0c0 0%, #8a8a8a 30%, #6b7280 100%);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
     }
-    .landing-certificado-laptop .landing-certificado-screen {
-      width: 260px; padding: 0.75rem; border-radius: 8px; background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
-      border: 1px solid rgba(212, 175, 55, 0.25); box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    .landing-certificado-laptop-screen {
+      width: 260px; padding: 0.9rem; border-radius: 6px;
+      background: linear-gradient(145deg, #0f172a 0%, #1e293b 100%);
+      box-shadow: inset 0 0 50px rgba(212, 175, 55, 0.08), 0 0 0 1px rgba(0,0,0,0.3);
     }
-    .landing-certificado-screen-bar {
-      height: 8px; border-radius: 4px; background: rgba(212, 175, 55, 0.2); margin-bottom: 0.75rem;
+    .landing-certificado-screen-header {
+      display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem; padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     }
+    .landing-certificado-screen-logo { width: 26px; height: 26px; object-fit: contain; }
+    .landing-certificado-screen-brand { display: flex; flex-direction: column; }
+    .landing-certificado-screen-brand-name { font-size: 0.75rem; font-weight: 700; color: #f3d97b; }
+    .landing-certificado-screen-brand-sub { font-size: 0.6rem; color: #94a3b8; }
     .landing-certificado-screen-title {
-      font-size: 0.75rem; color: #f3d97b; font-weight: 600; margin-bottom: 0.5rem;
+      font-size: 0.85rem; color: #fff; font-weight: 700; margin-bottom: 0.2rem;
     }
+    .landing-certificado-screen-title-gold { color: #f3d97b; }
+    .landing-certificado-screen-audience { font-size: 0.65rem; color: #94a3b8; margin-bottom: 0.5rem; }
     .landing-certificado-screen-options { margin-bottom: 0.6rem; }
     .landing-certificado-check {
       display: block; font-size: 0.7rem; color: #94a3b8; padding-left: 1.1rem; margin-bottom: 0.25rem;
@@ -291,32 +336,25 @@ interface ServicoItem {
       display: inline-block; padding: 0.4rem 0.75rem; border-radius: 6px;
       background: linear-gradient(135deg, #c89e2f 0%, #f3d97b 100%); color: #111; font-size: 0.7rem; font-weight: 700;
     }
-    .landing-certificado-phone {
-      position: relative; z-index: 1; margin-bottom: 1rem;
-      animation: certificado-float-phone 6s ease-in-out infinite 0.5s;
-    }
-    .landing-certificado-phone-screen {
-      width: 120px; padding: 0.6rem; border-radius: 16px; background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%);
-      border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 12px 28px rgba(0,0,0,0.45);
-    }
-    .landing-certificado-phone-bar {
-      height: 6px; width: 28px; margin: 0 auto 0.75rem; border-radius: 3px; background: rgba(148, 163, 184, 0.4);
-    }
-    .landing-certificado-phone-icon {
-      display: flex; align-items: center; justify-content: center; color: #d4af37; margin-bottom: 0.5rem;
-    }
     .landing-certificado-phone-label {
-      display: block; text-align: center; font-size: 0.6rem; color: #e2e8f0; font-weight: 600;
+      display: block; text-align: center; font-size: 0.7rem; font-weight: 700; color: #fff; line-height: 1.2;
     }
-    .landing-certificado-cta {
-      text-align: center; padding: 1.75rem 2rem; border-radius: 1rem;
-      background: rgba(11, 15, 26, 0.75); border: 1px solid rgba(212, 175, 55, 0.25); backdrop-filter: blur(10px);
+    .landing-certificado-laptop-base {
+      width: 280px; height: 14px; margin-top: 0; border-radius: 0 0 12px 12px;
+      background: linear-gradient(180deg, #9ca3af 0%, #6b7280 50%, #4b5563 100%);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    .landing-certificado-cta-below {
+      text-align: center; padding: 2rem 0 0; margin-top: 0.5rem;
     }
     .landing-certificado-cta-text {
       font-size: 1.15rem; font-weight: 700; color: #fff; margin: 0 0 0.25rem;
     }
-    .landing-certificado-cta-sub { color: #94a3b8; font-size: 0.95rem; margin: 0 0 1.25rem; }
-    .landing-certificado-btn { margin: 0 auto; }
+    .landing-certificado-cta-sub { color: #94a3b8; font-size: 0.95rem; margin: 0 0 1rem; }
+    .landing-certificado-btn {
+      margin: 0 auto; border: none; outline: none; box-shadow: none;
+    }
+    .landing-certificado-btn:focus { outline: none; }
     @media (max-width: 992px) {
       .landing-certificado-grid { grid-template-columns: 1fr; gap: 2rem; }
       .landing-certificado-devices { order: -1; min-height: 220px; }
@@ -325,8 +363,13 @@ interface ServicoItem {
     }
     @media (max-width: 768px) {
       .landing-certificado-devices { flex-direction: column; min-height: auto; gap: 1.5rem; }
-      .landing-certificado-laptop .landing-certificado-screen { width: 220px; }
-      .landing-certificado-phone-screen { width: 100px; }
+      .landing-certificado-phone { transform: none; margin-right: 0; margin-bottom: 0; }
+      .landing-certificado-laptop-wrap { transform: none; }
+      .landing-certificado-laptop-screen { width: 220px; }
+      .landing-certificado-laptop-base { width: 240px; }
+      .landing-certificado-phone-screen { width: 100px; padding: 0.45rem; }
+      .landing-certificado-phone-label { font-size: 0.6rem; }
+      .landing-certificado-phone-shield { width: 44px; height: 44px; }
     }
     .landing-contato-wrap {
       max-width: 980px;

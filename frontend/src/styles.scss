@@ -283,6 +283,35 @@ body.page-landing .navbar.over-hero .nav-link:hover {
   animation: pulse 2s ease-in-out infinite;
 }
 
+/* Scroll Reveal - animação ao entrar na viewport */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.scroll-reveal.scroll-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scroll-reveal.scroll-reveal-slideLeft {
+  transform: translateX(-30px);
+}
+.scroll-reveal.scroll-reveal-slideLeft.scroll-revealed {
+  transform: translateX(0);
+}
+.scroll-reveal.scroll-reveal-slideRight {
+  transform: translateX(30px);
+}
+.scroll-reveal.scroll-reveal-slideRight.scroll-revealed {
+  transform: translateX(0);
+}
+.scroll-reveal.scroll-reveal-scale {
+  transform: scale(0.92);
+}
+.scroll-reveal.scroll-reveal-scale.scroll-revealed {
+  transform: scale(1);
+}
+
 /* Layout helpers */
 body {
   min-height: 100vh;

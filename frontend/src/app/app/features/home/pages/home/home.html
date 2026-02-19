@@ -10,7 +10,7 @@
       </svg>
     </div>
     <div class="container position-relative">
-      <div class="landing-hero-content">
+      <div class="landing-hero-content" appScrollReveal [appScrollRevealRootMargin]="'0px'" [appScrollRevealThreshold]="0.05">
         <p class="landing-hero-tagline">
           <span class="landing-hero-tagline-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span>
           Transforme Sua Contabilidade
@@ -35,15 +35,15 @@
   </section>
 
   <!-- Nossos Serviços (conteúdo AR Contabilidade - layout imagem 3) -->
-  <section id="funcionalidades" class="landing-section landing-funcionalidades landing-section-cards">
+  <section id="funcionalidades" class="landing-section landing-funcionalidades landing-section-cards" appScrollReveal>
     <div class="landing-section-decor"></div>
     <div class="container">
-      <h2 class="landing-section-title">Funcionalidades <span class="landing-section-title-accent">Completas</span></h2>
-      <p class="landing-section-subtitle">Uma solução completa para todas as suas necessidades contábeis</p>
+      <h2 class="landing-section-title" appScrollReveal [appScrollRevealDelay]="80">Funcionalidades <span class="landing-section-title-accent">Completas</span></h2>
+      <p class="landing-section-subtitle" appScrollReveal [appScrollRevealDelay]="160">Uma solução completa para todas as suas necessidades contábeis</p>
       <div class="landing-servicos-grid">
         <div class="landing-servicos-row landing-servicos-row-1">
-          @for (item of servicos.slice(0, 3); track item.titulo) {
-            <div class="landing-card landing-card-servico" appCardTilt>
+          @for (item of servicos.slice(0, 3); track item.titulo; let i = $index) {
+            <div class="landing-card landing-card-servico" appCardTilt appScrollReveal [appScrollRevealDelay]="200 + i * 80" appScrollRevealVariant="fadeUp">
               <div class="landing-card-icon">
                 @switch (item.icone) {
                   @case ('contabil') {
@@ -74,7 +74,7 @@
         </div>
         <div class="landing-servicos-row landing-servicos-row-2">
           @if (servicos[3]) {
-            <div class="landing-card landing-card-servico" appCardTilt>
+            <div class="landing-card landing-card-servico" appCardTilt appScrollReveal [appScrollRevealDelay]="280" appScrollRevealVariant="slideLeft">
               <div class="landing-card-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
               </div>
@@ -86,7 +86,7 @@
               </ul>
             </div>
           }
-          <div class="landing-servicos-cta">
+          <div class="landing-servicos-cta" appScrollReveal [appScrollRevealDelay]="320" appScrollRevealVariant="scale">
             <div class="landing-servicos-cta-line"></div>
             <p class="landing-servicos-cta-text">E muito mais para o seu negócio...</p>
             <a href="https://wa.me/559291359003" target="_blank" rel="noopener noreferrer" class="btn btn-landing-servicos-cta">
@@ -95,7 +95,7 @@
             </a>
           </div>
           @if (servicos[4]) {
-            <div class="landing-card landing-card-servico" appCardTilt>
+            <div class="landing-card landing-card-servico" appCardTilt appScrollReveal [appScrollRevealDelay]="280" appScrollRevealVariant="slideRight">
               <div class="landing-card-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
               </div>
@@ -113,16 +113,16 @@
   </section>
 
   <!-- Segmentos Atendidos / Empresas por área -->
-  <section id="clientes" class="landing-section landing-clientes">
+  <section id="clientes" class="landing-section landing-clientes" appScrollReveal>
     <div class="container">
       <div class="landing-clientes-header">
-        <p class="landing-segmentos-pill">Facilitadores Contábil</p>
-        <h2 class="landing-section-title">Acesse seus <span class="landing-section-title-accent">links úteis</span></h2>
-        <p class="landing-section-subtitle">Centralizamos os principais facilitadores estaduais, federais, municipais, trabalhistas e de legislação para agilizar sua rotina.</p>
+        <p class="landing-segmentos-pill" appScrollReveal [appScrollRevealDelay]="60">Facilitadores Contábil</p>
+        <h2 class="landing-section-title" appScrollReveal [appScrollRevealDelay]="120">Acesse seus <span class="landing-section-title-accent">links úteis</span></h2>
+        <p class="landing-section-subtitle" appScrollReveal [appScrollRevealDelay]="180">Centralizamos os principais facilitadores estaduais, federais, municipais, trabalhistas e de legislação para agilizar sua rotina.</p>
       </div>
       <div class="landing-cards-grid landing-cards-segmentos">
-        @for (facilitador of facilitadoresContabeis; track facilitador.titulo) {
-          <div class="landing-card landing-card-segmento" appCardTilt>
+        @for (facilitador of facilitadoresContabeis; track facilitador.titulo; let i = $index) {
+          <div class="landing-card landing-card-segmento" appCardTilt appScrollReveal [appScrollRevealDelay]="220 + i * 70" appScrollRevealVariant="fadeUp">
             <div class="landing-card-icon">
               @switch (facilitador.icone) {
                 @case ('estadual') {
@@ -177,10 +177,11 @@
   </section>
 
   <!-- Certificado Digital A1 -->
-  <section id="certificado-a1" class="landing-section landing-certificado-a1">
+  <section id="certificado-a1" class="landing-section landing-certificado-a1" appScrollReveal>
+    <div class="landing-certificado-sparkles" aria-hidden="true"></div>
     <div class="container">
       <div class="landing-certificado-grid">
-        <div class="landing-certificado-content">
+        <div class="landing-certificado-content" appScrollReveal [appScrollRevealDelay]="100" appScrollRevealVariant="slideLeft">
           <h2 class="landing-certificado-title">Certificado Digital <span class="landing-section-title-accent">A1</span></h2>
           <p class="landing-certificado-subtitle">Pessoa Jurídica e Pessoa Física</p>
           <p class="landing-certificado-desc">
@@ -194,30 +195,45 @@
             <li>Suporte especializado da AR Gestão</li>
           </ul>
         </div>
-        <div class="landing-certificado-devices">
-          <div class="landing-certificado-laptop">
-            <div class="landing-certificado-screen">
-              <div class="landing-certificado-screen-bar"></div>
-              <p class="landing-certificado-screen-title">Certificado Digital A1</p>
-              <div class="landing-certificado-screen-options">
-                <span class="landing-certificado-check">Pessoa Jurídica (e-CNPJ)</span>
-                <span class="landing-certificado-check">Pessoa Física (e-CPF)</span>
-              </div>
-              <div class="landing-certificado-screen-btn">Emitir Certificado</div>
-            </div>
-          </div>
+        <div class="landing-certificado-devices" appScrollReveal [appScrollRevealDelay]="150" appScrollRevealVariant="slideRight">
           <div class="landing-certificado-phone">
             <div class="landing-certificado-phone-screen">
-              <div class="landing-certificado-phone-bar"></div>
-              <div class="landing-certificado-phone-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              <div class="landing-certificado-phone-topbar">
+                <img src="/logo-ar.png" alt="AR Gestão" class="landing-certificado-phone-logo" width="32" height="32">
+                <div class="landing-certificado-phone-menu" aria-hidden="true">
+                  <span></span><span></span><span></span>
+                </div>
+              </div>
+              <div class="landing-certificado-phone-shield">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               </div>
               <span class="landing-certificado-phone-label">Certificado Digital</span>
             </div>
           </div>
+          <div class="landing-certificado-laptop-wrap">
+            <div class="landing-certificado-laptop">
+              <div class="landing-certificado-laptop-screen">
+                <div class="landing-certificado-screen-header">
+                  <img src="/logo-ar.png" alt="AR" class="landing-certificado-screen-logo" width="28" height="28">
+                  <div class="landing-certificado-screen-brand">
+                    <span class="landing-certificado-screen-brand-name">AR Gestão</span>
+                    <span class="landing-certificado-screen-brand-sub">Contábil e Financeira</span>
+                  </div>
+                </div>
+                <p class="landing-certificado-screen-title">Certificado Digital <span class="landing-certificado-screen-title-gold">A1</span></p>
+                <p class="landing-certificado-screen-audience">Pessoa Jurídica e Pessoa Física</p>
+                <div class="landing-certificado-screen-options">
+                  <span class="landing-certificado-check">Pessoa Jurídica (e-CNPJ)</span>
+                  <span class="landing-certificado-check">Pessoa Física (e-CPF)</span>
+                </div>
+                <div class="landing-certificado-screen-btn">Emitir Certificado</div>
+              </div>
+            </div>
+            <div class="landing-certificado-laptop-base"></div>
+          </div>
         </div>
       </div>
-      <div class="landing-certificado-cta">
+      <div class="landing-certificado-cta-below" appScrollReveal [appScrollRevealDelay]="220" appScrollRevealVariant="fadeUp">
         <p class="landing-certificado-cta-text">Adquira seu Certificado A1 em poucos cliques</p>
         <p class="landing-certificado-cta-sub">Atendimento rápido e emissão segura.</p>
         <a href="https://wa.me/559291359003?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20meu%20Certificado%20Digital%20A1." target="_blank" rel="noopener noreferrer" class="btn btn-landing btn-landing-primary landing-certificado-btn">
@@ -228,13 +244,13 @@
   </section>
 
   <!-- Planos (imagem 5) -->
-  <section id="planos" class="landing-section landing-planos">
+  <section id="planos" class="landing-section landing-planos" appScrollReveal>
     <div class="container">
-      <h2 class="landing-section-title">Planos que <span class="landing-section-title-accent">Crescem com Você</span></h2>
-      <p class="landing-section-subtitle landing-planos-subtitle">Escolha a melhor opção para o seu momento. Transparência total, sem taxas escondidas.</p>
+      <h2 class="landing-section-title" appScrollReveal [appScrollRevealDelay]="80">Planos que <span class="landing-section-title-accent">Crescem com Você</span></h2>
+      <p class="landing-section-subtitle landing-planos-subtitle" appScrollReveal [appScrollRevealDelay]="160">Escolha a melhor opção para o seu momento. Transparência total, sem taxas escondidas.</p>
       <div class="landing-planos-grid">
-        @for (plano of planosExibicao; track plano.nome) {
-          <div class="landing-plano-card" [class.featured]="plano.destaque" appCardTilt>
+        @for (plano of planosExibicao; track plano.nome; let i = $index) {
+          <div class="landing-plano-card" [class.featured]="plano.destaque" appCardTilt appScrollReveal [appScrollRevealDelay]="200 + i * 100" appScrollRevealVariant="scale">
             @if (plano.destaque) {
               <div class="landing-plano-badge">Mais Popular</div>
             }
